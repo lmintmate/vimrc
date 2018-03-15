@@ -70,4 +70,10 @@ map ψ c
 map Η H
 map Μ M
 map Λ L
+map ω v
+map Ω V
+map γ g
+map Γ G
+map γγ gg
+map αε ae
 " tip for Greek spell-checking: write in the file you want to spellcheck :setlocal spell spelllang=el, and it will download all necessary files and do the spellchecking by itself (tip from https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008)
