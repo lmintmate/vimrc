@@ -17,8 +17,9 @@ nnoremap <silent> <esc> :noh<cr><esc> " clear the highlighting from the previous
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting on Linux
 nnoremap x "_x " delete letters without putting them in the clipboard
 set belloff=all " disable beeping
-" map Greek letters to the respective on the keyboard English ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
+" map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
 map ι i
+map Ι I
 map δ d
 map Δ D
 map η h
@@ -40,6 +41,7 @@ map Ρ R
 map ο o
 map Ο O
 map α a
+map Α A
 map θ u
 map Θ U
 map ψ c
