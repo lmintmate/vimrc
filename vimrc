@@ -13,7 +13,7 @@ set shortmess+=I        " prevents the initial message from showing up
 set linebreak           " prevents wrap mode from cutting words in the middle
 set relativenumber      " set relative line numbers to ease navigation by lines - toggle with :set rnu!
 set scrolloff=4         " set number of context lines to show above/below cursor
-nnoremap <silent> <esc> :noh<cr><esc> " clear the highlighting from the previous search when pressing esc
+nnoremap <silent> <Enter> :noh<cr><esc> " clear the highlighting from the previous search when pressing enter
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting on Linux
 nnoremap x "_x " delete letters without putting them in the clipboard
 set belloff=all " disable beeping
