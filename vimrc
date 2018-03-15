@@ -37,7 +37,8 @@ nnoremap <silent> <Enter> :noh<cr><esc> " clear the highlighting from the previo
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
 nnoremap x "_x " delete letters without putting them in the clipboard
 set belloff=all " disable beeping
-vnoremap p "_dp " don't copy to the clipboard the stuff I replace by pasting (from https://stackoverflow.com/a/10723838)
+vnoremap p "_dp
+vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting (from https://stackoverflow.com/a/10723838)
 " map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
 map ι i
 map Ι I
@@ -50,6 +51,7 @@ map λ l
 map ς w
 map ε e
 map π p
+map Π P
 map υ y
 map χ x
 map σ s
