@@ -1,4 +1,24 @@
 set nocompatible        " no compatibility with vi
+" == VIM PLUG SECTION ==
+" autoinstall
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+" dependency of vim-textobj-entire
+Plug 'kana/vim-textobj-user'
+" provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines
+Plug 'kana/vim-textobj-entire'
+
+" Initialize plugin system
+call plug#end()
+" == END OF SECTION ==
+" Rest of config
 set termguicolors       " makes terminal vim compatible with gui themes
 colorscheme blue-mood   " where I enable my home-made colorscheme
 set guifont=DejaVu\ Sans\ Mono\ 14 " font for Gvim
