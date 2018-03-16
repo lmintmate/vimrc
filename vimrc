@@ -41,6 +41,21 @@ set scrolloff=4         " set number of context lines to show above/below cursor
 nnoremap <silent> <Enter> :noh<cr><esc> " clear the highlighting from the previous search when pressing enter
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
 set laststatus=2        " always show status line
+" custom statusline - I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme
+" Place to get started with the subject: https://shapeshed.com/vim-statuslines/
+set statusline=
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
+set statusline+=\[%{&fileformat}\] " file format
+set statusline+=\ %f " path to the file in the buffer
+set statusline+=%m " modifed flag
+set statusline+=%h " help buffer flag
+set statusline+=%r " read-only flag
+set statusline+=%=
+set statusline+=\ %k " keymap
+set statusline+=\ %y " filetype
+set statusline+=\ %l/%L " current and total lines
+set statusline+=\ %p%% " percentage into file
+set statusline+=\ 
 nnoremap x "_x " delete letters without putting them in the clipboard
 set belloff=all " disable beeping
 vnoremap p "_dp
