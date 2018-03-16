@@ -46,8 +46,8 @@ set laststatus=2        " always show status line
 set statusline=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
 set statusline+=\[%{&fileformat}\] " file format
-set statusline+=\ %f " path to the file in the buffer
-set statusline+=%m " modifed flag
+set statusline+=\ %t " name of file in the buffer
+set statusline+=%m " modified flag
 set statusline+=%h " help buffer flag
 set statusline+=%r " read-only flag
 set statusline+=%=
