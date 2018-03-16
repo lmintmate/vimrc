@@ -35,6 +35,7 @@ set relativenumber      " set relative line numbers to ease navigation by lines 
 set scrolloff=4         " set number of context lines to show above/below cursor
 nnoremap <silent> <Enter> :noh<cr><esc> " clear the highlighting from the previous search when pressing enter
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
+set laststatus=2        " always show status line
 nnoremap x "_x " delete letters without putting them in the clipboard
 set belloff=all " disable beeping
 vnoremap p "_dp
