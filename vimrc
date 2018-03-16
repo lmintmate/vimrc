@@ -27,6 +27,7 @@ call plug#end()
 set termguicolors       " makes terminal vim compatible with gui themes
 colorscheme blue-mood   " where I enable my home-made colorscheme
 set guifont=DejaVu\ Sans\ Mono\ 14 " font for Gvim
+set linespace=2         " increases space between lines - fixes underscore not showing up in Gvim
 set wildmenu            " visual autocomplete for command menu
 set incsearch           " display search matches as characters are entered
 set hlsearch            " highlight matches
@@ -67,6 +68,7 @@ map δ d
 map Δ D
 map η h
 map ξ j
+map Ξ J
 map κ k
 map λ l
 map ς w
