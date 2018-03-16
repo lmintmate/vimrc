@@ -7,7 +7,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 " Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugins')
+" download files on a different directory if on windows
+if has("win32")
+    call plug#begin('~/vimfiles/plugins')
+else
+    call plug#begin('~/.vim/plugins')
+endif
 
 " Declare the list of plugins.
 " dependency of vim-textobj-entire
