@@ -41,7 +41,7 @@ set relativenumber      " set relative line numbers to ease navigation by lines 
 set scrolloff=4         " set number of context lines to show above/below cursor
 set confirm             " ask for confirmation on operations such as quit without saving
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
-nnoremap <silent> <backspace> :noh<cr><esc> " clear the highlighting from the previous search when pressing backspace
+nnoremap <silent> <backspace> :nohlsearch<cr><esc> " clear the highlighting from the previous search when pressing backspace
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
 set laststatus=2        " always show status line
