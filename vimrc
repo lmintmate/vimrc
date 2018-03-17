@@ -39,6 +39,8 @@ set shortmess+=I        " prevents the initial message from showing up
 set linebreak           " prevents wrap mode from cutting words in the middle
 set relativenumber      " set relative line numbers to ease navigation by lines - toggle with :set rnu!
 set scrolloff=4         " set number of context lines to show above/below cursor
+set confirm             " ask for confirmation on operations such as quit without saving
+set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 nnoremap <silent> <Enter> :noh<cr><esc> " clear the highlighting from the previous search when pressing enter
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
 set laststatus=2        " always show status line
