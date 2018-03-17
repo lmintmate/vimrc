@@ -1,4 +1,4 @@
-set nocompatible        " no compatibility with vi
+" set nocompatible        " no compatibility with vi - turns out this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found.
 " == VIM PLUG SECTION ==
 " autoinstall
 if empty(glob('~/.vim/autoload/plug.vim'))
