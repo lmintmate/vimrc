@@ -19,6 +19,8 @@ endif
 Plug 'kana/vim-textobj-user'
 " provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines
 Plug 'kana/vim-textobj-entire'
+" simple plugin to view list of recently viewed files
+Plug 'yegappan/MRU'
 
 " Initialize plugin system
 call plug#end()
