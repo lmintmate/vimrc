@@ -44,6 +44,7 @@ set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 nnoremap <silent> <backspace> :nohlsearch<cr><esc> " clear the highlighting from the previous search when pressing backspace
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
+set hidden              " switch to another buffer without asking for confirmation to save any unsaved changes
 set laststatus=2        " always show status line
 " custom statusline - I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme
 " Place to get started with the subject: https://shapeshed.com/vim-statuslines/
