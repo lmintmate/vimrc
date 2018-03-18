@@ -60,7 +60,7 @@ set statusline+=%r " read-only flag
 set statusline+=%=
 set statusline+=\ %k " keymap
 set statusline+=\ %y " filetype
-set statusline+=\ %l/%L " current and total lines
+set statusline+=\ L%l " current line
 set statusline+=\ %p%% " percentage into file
 set statusline+=\ 
 nnoremap x "_x " delete letters without putting them in the clipboard
