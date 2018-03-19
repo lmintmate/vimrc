@@ -52,7 +52,7 @@ set laststatus=2        " always show status line
 " Place to get started with the subject: https://shapeshed.com/vim-statuslines/
 set statusline=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
-set statusline+=\[%{&fileformat}\] " file format
+set statusline+=\(%{&fileformat}\) " file format
 set statusline+=\ %t " name of file in the buffer
 set statusline+=%m " modified flag
 set statusline+=%h " help buffer flag
