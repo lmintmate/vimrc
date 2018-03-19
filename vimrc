@@ -19,8 +19,12 @@ endif
 Plug 'kana/vim-textobj-user'
 " provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines
 Plug 'kana/vim-textobj-entire'
-" simple plugin to view list of recently viewed files
+" simple plugin to view list of recently opened files
 Plug 'yegappan/MRU'
+" shows number of search results
+Plug 'google/vim-searchindex'
+" disables search highlighting when you are done searching and re-enables it when you search again
+Plug 'romainl/vim-cool'
 
 " Initialize plugin system
 call plug#end()
@@ -43,7 +47,6 @@ set relativenumber      " set relative line numbers to ease navigation by lines 
 set scrolloff=4         " set number of context lines to show above/below cursor
 set confirm             " ask for confirmation on operations such as quit without saving
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
-nnoremap <silent> <backspace> :nohlsearch<cr><esc> " clear the highlighting from the previous search when pressing backspace
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
 set hidden              " switch to another buffer without asking for confirmation to save any unsaved changes
