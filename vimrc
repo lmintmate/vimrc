@@ -43,6 +43,8 @@ nnoremap <leader>b :<c-u>call SkyBison("b ")<cr>
 nnoremap <leader>h :<c-u>call SkyBison("h ")<cr>
 " for file finding
 nnoremap <leader>e :<c-u>call SkyBison("e ")<cr>
+" MRU shortcut
+nnoremap <leader>r :MRU<cr>
 " Rest of config
 set termguicolors       " makes terminal vim compatible with gui themes
 colorscheme blue-mood   " where I enable my home-made colorscheme
