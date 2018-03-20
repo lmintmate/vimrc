@@ -29,6 +29,8 @@ Plug 'romainl/vim-cool'
 Plug 'mattn/emmet-vim'
 " Autocomplete system for the cmdline
 Plug 'paradigm/SkyBison'
+" Makes the yanked region apparent
+Plug 'machakann/vim-highlightedyank'
 
 " Initialize plugin system
 call plug#end()
