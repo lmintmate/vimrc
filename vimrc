@@ -38,15 +38,15 @@ call plug#end()
 " Plugin config
 " SkyBison keymaps
 " general
-nnoremap <leader>s :<c-u>call SkyBison("")<cr>
+nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
 "for buffers
-nnoremap <leader>b :<c-u>call SkyBison("b ")<cr>
+nnoremap <silent> <leader>b :<c-u>call SkyBison("b ")<cr>
 " for help
-nnoremap <leader>h :<c-u>call SkyBison("h ")<cr>
+nnoremap <silent> <leader>h :<c-u>call SkyBison("h ")<cr>
 " for file finding
-nnoremap <leader>e :<c-u>call SkyBison("e ")<cr>
+nnoremap <silent> <leader>e :<c-u>call SkyBison("e ")<cr>
 " MRU shortcut
-nnoremap <leader>r :MRU<cr>
+nnoremap <silent> <leader>r :MRU<cr>
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
 " Rest of config
