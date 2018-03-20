@@ -53,6 +53,8 @@ set linespace=2         " increases space between lines - fixes underscore not s
 set wildmenu            " visual autocomplete for command menu
 set incsearch           " display search matches as characters are entered
 set hlsearch            " highlight matches
+set ignorecase          " case-insensitive search e.g. if I want to find Foo as well when searching for /foo
+set smartcase           " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 set showcmd             " display incomplete commands
 set keymap=greek_utf-8  " enables greek input - switch inputs with ctrl+6
 set iminsert=0          " I dont want greek as default though in insert mode
