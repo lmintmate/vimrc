@@ -52,7 +52,12 @@ let g:highlightedyank_highlight_duration = 590
 " Rest of config
 set termguicolors       " makes terminal vim compatible with gui themes
 colorscheme blue-mood   " where I enable my home-made colorscheme
-set guifont=DejaVu\ Sans\ Mono\ 14 " font for Gvim
+" font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there)
+if has("win32")
+    set guifont=Lucida_Console:h14
+else
+    set guifont=DejaVu\ Sans\ Mono\ 14
+endif
 set linespace=2         " increases space between lines - fixes underscore not showing up in Gvim
 set wildmenu            " visual autocomplete for command menu
 set incsearch           " display search matches as characters are entered
