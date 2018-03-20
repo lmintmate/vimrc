@@ -82,9 +82,10 @@ set statusline+=\ %p%% " percentage into file
 set statusline+=\ 
 nnoremap x "_x " delete letters without putting them in the clipboard
 set belloff=all " disable beeping
+set display=lastline " display partial lines at the bottom of the screen (instead of not doing so)
 vnoremap p "_dp
 vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting (from https://stackoverflow.com/a/10723838)
-" I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows who aren't used with a prefix (if at all) anyways
+" I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways
 nnoremap <Up> gk
 nnoremap <Down> gj
 " map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
