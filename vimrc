@@ -27,10 +27,22 @@ Plug 'google/vim-searchindex'
 Plug 'romainl/vim-cool'
 " Emmet - expandable abbreviations to ease writing html and css
 Plug 'mattn/emmet-vim'
+" Autocomplete system for the cmdline
+Plug 'paradigm/SkyBison'
 
 " Initialize plugin system
 call plug#end()
 " == END OF SECTION ==
+" Plugin config
+" SkyBison keymaps
+" general
+nnoremap <leader>s :<c-u>call SkyBison("")<cr>
+"for buffers
+nnoremap <leader>b :<c-u>call SkyBison("b ")<cr>
+" for help
+nnoremap <leader>h :<c-u>call SkyBison("h ")<cr>
+" for file finding
+nnoremap <leader>e :<c-u>call SkyBison("e ")<cr>
 " Rest of config
 set termguicolors       " makes terminal vim compatible with gui themes
 colorscheme blue-mood   " where I enable my home-made colorscheme
