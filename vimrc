@@ -45,6 +45,8 @@ nnoremap <silent> <leader>b :<c-u>call SkyBison("b ")<cr>
 nnoremap <silent> <leader>h :<c-u>call SkyBison("h ")<cr>
 " for file finding
 nnoremap <silent> <leader>e :<c-u>call SkyBison("e ")<cr>
+" SkyBison substring matching
+let g:skybison_fuzz = 2
 " MRU shortcut
 nnoremap <silent> <leader>r :MRU<cr>
 " duration of highlightedyank highlight in milliseconds
