@@ -54,6 +54,8 @@ let g:highlightedyank_highlight_duration = 590
 " Rest of config
 set termguicolors       " makes terminal vim compatible with gui themes
 colorscheme blue-mood   " where I enable my home-made colorscheme
+" this disables the annoying red on things like underscores in markdown mode (from https://github.com/tpope/vim-markdown/issues/79)
+autocmd FileType markdown hi link markdownError NONE
 " font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there)
 if has("win32")
     set guifont=Lucida_Console:h14
