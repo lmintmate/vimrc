@@ -126,6 +126,9 @@ map ν n
 map Ν N
 map ζ z
 map φ f
+map Φ F
+map τ t
+map Τ T
 map β b
 map ρ r
 map Ρ R
