@@ -19,8 +19,9 @@ endif
 Plug 'kana/vim-textobj-user'
 " provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines
 Plug 'kana/vim-textobj-entire'
-" simple plugin to view list of recently opened files
-Plug 'yegappan/MRU'
+" simple plugin to view list of recently opened files.
+" I'm using my fork which combines the improvements from lilydjwg's fork with yegappan's upstream additions
+Plug 'lmintmate/MRU'
 " shows number of search results
 Plug 'google/vim-searchindex'
 " disables search highlighting when you are done searching and re-enables it when you search again
