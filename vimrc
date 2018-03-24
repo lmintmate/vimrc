@@ -78,6 +78,7 @@ set linebreak           " prevents wrap mode from cutting words in the middle
 set relativenumber      " set relative line numbers to ease navigation by lines - toggle with :set rnu!
 set scrolloff=4         " set number of context lines to show above/below cursor
 set confirm             " ask for confirmation on operations such as quit without saving
+set guioptions-=T       " disable toolbar in Gvim
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
