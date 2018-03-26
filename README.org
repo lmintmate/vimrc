@@ -20,14 +20,18 @@ One thing that vim users are told to put in their vimrc files is ~set nocompatib
 * Vim plug
 Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier.
 ** Autoinstall vim-plug (Unix-only)
+From [[https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation][tips · junegunn/vim-plug Wiki · GitHub]].
 #+BEGIN_SRC org
-" autoinstall
+" autoinstall on Unix/Linux
+if has("unix")
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+endif
 #+END_SRC
+The above probably won't work on Windows, given it uses curl. To bootstrap vim-plug there, I can use [[https://github.com/junegunn/vim-plug#windows-powershell][a PowerShell script]].
 ** Defining the directory for installed plugins
 I have it conditionally defined, so that a different directory is used if on Windows.
 #+BEGIN_SRC org
