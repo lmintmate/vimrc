@@ -126,7 +126,7 @@ Set termguicolors: Makes terminal vim compatible with gui themes.
 #+BEGIN_SRC org
 set termguicolors
 #+END_SRC
-Where I enable my home-made colorscheme
+Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme]].
 #+BEGIN_SRC org
 colorscheme blue-mood
 #+END_SRC
@@ -190,7 +190,7 @@ set clipboard=unnamedplus " set vim to use the system clipboard
 #+END_SRC
 Switch to another buffer without asking for confirmation to save any unchanged changes.
 #+BEGIN_SRC org
-set hidden              " switch to another buffer without asking for confirmation to save any unsaved changes
+set hidden " switch to another buffer without asking for confirmation to save any unsaved changes
 #+END_SRC
 Disable beeping
 #+BEGIN_SRC org
@@ -222,11 +222,11 @@ nnoremap <Down> gj
 * Search settings
 Display search matches as characters are entered
 #+BEGIN_SRC org
-set incsearch           " display search matches as characters are entered
+set incsearch " display search matches as characters are entered
 #+END_SRC
 Highlight matches
 #+BEGIN_SRC org
-set hlsearch            " highlight matches
+set hlsearch " highlight matches
 #+END_SRC
 ignorecase - Case insensitive search e.g. if I want to find Foo as well when searching for /foo
 #+BEGIN_SRC org
@@ -234,12 +234,12 @@ set ignorecase          " case-insensitive search
 #+END_SRC
 smartcase - override the previous setting when the search pattern uses capitals e.g. /Foo finds only Foo.
 #+BEGIN_SRC org
-set smartcase           " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
+set smartcase " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 #+END_SRC
 * Custom statusline
-I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: https://shapeshed.com/vim-statuslines/
+I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use [[https://github.com/itchyny/lightline.vim][lightline]], but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: https://shapeshed.com/vim-statuslines/
 #+BEGIN_SRC org
-set laststatus=2        " always show status line
+set laststatus=2 " always show status line
 " beginning of statusline
 set statusline=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
@@ -263,16 +263,15 @@ set keymap=greek_utf-8  " enables greek input - switch inputs with ctrl+6
 #+END_SRC
 iminsert - I don't want greek as default though in insert mode, so this setting makes sure that's the case.
 #+BEGIN_SRC org
-set iminsert=0          " I dont want greek as default though in insert mode
+set iminsert=0 " I dont want greek as default though in insert mode
 #+END_SRC
 imsearch - with this, when searching it inherits the keymap currently used in insert mode.
 #+BEGIN_SRC org
-set imsearch=-1         " with this when searching it inherits the keymap currently used in insert mode
+set imsearch=-1 " with this when searching it inherits the keymap currently used in insert mode
 #+END_SRC
 ** Greek letters mapping.
-Map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc.
+Map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from [[https://www.void.gr/kargig/dot/vimrc]].
 #+BEGIN_SRC org
-" map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
 map α a
 map Α A
 map β b
@@ -316,4 +315,4 @@ map Ω V
 map γγ gg
 map αε ae
 #+END_SRC
-Tip for Greek spell-checking: write in the file you want to spellcheck :setlocal spell spelllang=el, and it will download all necessary files and do the spellchecking by itself (tip from [[https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008][Ubuntu-gr Forum - vim και ελληνικός ορθογράφος]])
+Tip for Greek spell-checking: write in the file you want to spellcheck ~:setlocal spell spelllang=el~, and it will download all necessary files and do the spellchecking by itself (tip from [[https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008][Ubuntu-gr Forum - vim και ελληνικός ορθογράφος]])

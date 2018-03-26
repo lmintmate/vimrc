@@ -95,7 +95,7 @@ set confirm             " ask for confirmation on operations
 
 set clipboard=unnamedplus " set vim to use the system clipboard
 
-set hidden              " switch to another buffer without asking for confirmation to save any unsaved changes
+set hidden " switch to another buffer without asking for confirmation to save any unsaved changes
 
 set belloff=all " disable beeping
 
@@ -111,15 +111,15 @@ vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
 nnoremap <Up> gk
 nnoremap <Down> gj
 
-set incsearch           " display search matches as characters are entered
+set incsearch " display search matches as characters are entered
 
-set hlsearch            " highlight matches
+set hlsearch " highlight matches
 
 set ignorecase          " case-insensitive search
 
-set smartcase           " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
+set smartcase " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 
-set laststatus=2        " always show status line
+set laststatus=2 " always show status line
 " beginning of statusline
 set statusline=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
@@ -138,11 +138,10 @@ set statusline+=\
 
 set keymap=greek_utf-8  " enables greek input - switch inputs with ctrl+6
 
-set iminsert=0          " I dont want greek as default though in insert mode
+set iminsert=0 " I dont want greek as default though in insert mode
 
-set imsearch=-1         " with this when searching it inherits the keymap currently used in insert mode
+set imsearch=-1 " with this when searching it inherits the keymap currently used in insert mode
 
-" map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
 map α a
 map Α A
 map β b
