@@ -1,0 +1,328 @@
+#+PROPERTY: header-args :tangle vimrc
+#+TITLE: My literate Vim configuration
+# Note: export with org-babel-tangle (C-c C-v t)
+# More info at: https://org-babel.readthedocs.io/en/latest/header-args/#tangle
+* Introduction
+A while ago, I thought I'd try out Vim, to see what the fuss was about. Turns out I like its modal editing method a lot. What I miss from emacs though is having a literate configuration file, as I like making comments on my config options, and filling the vimrc file with comments doesn't look very clean. Then I remembered the existence of org-babel, and after reading [[https://orgmode.org/worg/org-contrib/babel/languages.html][that tangling is language-agnostic]], I thought I’d try it out.
+** How the magic is done
+I put in the beginning of this org file the string
+#+BEGIN_EXAMPLE
+#+PROPERTY: header-args :tangle vimrc
+#+END_EXAMPLE
+which tells the src blocks to get tangled (= exported) to a file called vimrc, so that vim will be able to see it. The tangling is triggered by the command ~org-babel-tangle~, which has the shortcut ~C-c C-v t~. During my testing however I discovered that the global property doesn't work if a specific language isn't specified in the code blocks (tangling though worked when I had ~:tangle~ on every single source block, but that wasn't very practical). And since vimscript isn't supported by babel (though it could be, if someone wrote a plugin for that - but that won't be me, as I don't know enough emacs lisp nor vimscript for that), I decided to use org (which is supported) as a placeholder.
+** A note on the repository
+In this here repository, I also include the old vimrc, just in case.
+* Nocompatible
+One thing that vim users are told to put in their vimrc files is ~set nocompatible~ in order to kill pesky vi behavior. However, it turns out that this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found. I keep it in my file though, albeit commented out, in order to remember this fact.
+#+BEGIN_SRC org
+" set nocompatible        " no compatibility with vi - turns out this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found.
+#+END_SRC
+* Vim plug
+Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier.
+#+BEGIN_SRC org
+" == VIM PLUG SECTION ==
+" autoinstall
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+#+END_SRC
+** Defining the directory for installed plugins
+I have it conditionally defined, so that a different directory is used if on Windows.
+#+BEGIN_SRC org
+" Plugins will be downloaded under the specified directory.
+" download files on a different directory if on windows
+if has("win32")
+    call plug#begin('~/vimfiles/plugins')
+else
+    call plug#begin('~/.vim/plugins')
+endif
+#+END_SRC
+** Declare the list of plugins
+*** vim-textobj-entire
+This is a custom textobject which allows me to easily select the entire buffer, most useful for when I want to paste something over it (because it turns out I can copy the entire buffer with ~:%y~).
+#+BEGIN_SRC org
+" Declare the list of plugins.
+" dependency of vim-textobj-entire
+Plug 'kana/vim-textobj-user'
+" provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines
+Plug 'kana/vim-textobj-entire'
+#+END_SRC
+*** MRU (Viewing recent files)
+I wanted to be able to view the files I had recently opened easily, and Ctrl-P didn't work as it doesn't recognise non-latin characters. I'm using thus MRU which is a good simple plugin for that purpose. Initially I was missing a feature to remove files from the list without resorting to editing the file it uses to store the list by hand, but then found lilydjwg's fork, which implemented this functionality. It was missing though some of the changes the creator yegappan had made upstream, so I made my own fork which combines the two, and which is the one I use.
+#+BEGIN_SRC org
+" simple plugin to view list of recently opened files.
+" I'm using my fork which combines the improvements from lilydjwg's fork (most importantly the ability to remove items from the recent files list) with yegappan's upstream additions
+Plug 'lmintmate/MRU'
+#+END_SRC
+*** vim-searchindex (Show number of search results)
+By default vim doesn't show the number of search results. This plugin fixes that.
+#+BEGIN_SRC org
+" shows number of search results
+Plug 'google/vim-searchindex'
+#+END_SRC
+*** vim-cool (disable search highlighting)
+Another annoying default behavior of Vim is that it keeps the highlighting of the search results even when I finished with the search. This plugin disables the search highlighting when any button is pressed.
+#+BEGIN_SRC org
+" disables search highlighting when you are done searching and re-enables it when you search again
+Plug 'romainl/vim-cool'
+#+END_SRC
+*** Emmet
+Expandable abbreviations to ease writing html and css
+#+BEGIN_SRC org
+" Emmet - expandable abbreviations to ease writing html and css
+Plug 'mattn/emmet-vim'
+#+END_SRC
+*** SkyBison (Autocomplete system for the cmdline)
+Another thing I missed from emacs was a completion framework. SkyBison fixes this. I use it for completion of general commands, help topics, finding files, and buffers.
+#+BEGIN_SRC org
+" Autocomplete system for the cmdline
+Plug 'paradigm/SkyBison'
+#+END_SRC
+*** vim-highlightedyank (Makes yanked region apparent)
+This briefly highlights the text that's being yanked. It has helped me quite a bit because I often miscalculate the area I am to yank.
+#+BEGIN_SRC org
+" Makes the yanked region apparent
+Plug 'machakann/vim-highlightedyank'
+#+END_SRC
+** Initialize the plugin system
+#+BEGIN_SRC org
+" Initialize plugin system
+call plug#end()
+" == END OF SECTION ==
+#+END_SRC
+* Plugin settings
+Here are set the plugin-specific settings.
+** SkyBison keymaps
+The bindings for invoking SkyBison: general, for buffers, for help and for file finding.
+#+BEGIN_SRC org
+" Plugin config
+" SkyBison keymaps
+" general
+nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
+"for buffers
+nnoremap <silent> <leader>b :<c-u>call SkyBison("b ")<cr>
+" for help
+nnoremap <silent> <leader>h :<c-u>call SkyBison("h ")<cr>
+" for file finding
+nnoremap <silent> <leader>e :<c-u>call SkyBison("e ")<cr>
+#+END_SRC
+** SkyBison substring matching
+This setting makes SkyBison match exact strings, no matter where in the word they are, thus bringing it closer to what I'm used to from ido and ivy.
+#+BEGIN_SRC org
+" SkyBison substring matching
+let g:skybison_fuzz = 2
+#+END_SRC
+** Shortcut for invoking MRU
+#+BEGIN_SRC org
+" MRU shortcut
+nnoremap <silent> <leader>r :MRU<cr>
+#+END_SRC
+** Duration of highlightedyank (in milliseconds)
+#+BEGIN_SRC org
+" duration of highlightedyank highlight in milliseconds
+let g:highlightedyank_highlight_duration = 590
+#+END_SRC
+* Colorscheme settings
+Set termguicolors: Makes terminal vim compatible with gui themes.
+#+BEGIN_SRC org
+" Rest of config
+set termguicolors       " makes terminal vim compatible with gui themes
+#+END_SRC
+Where I enable my home-made colorscheme
+#+BEGIN_SRC org
+colorscheme blue-mood   " where I enable my home-made colorscheme
+#+END_SRC
+This disables the annoying red on things like underscores in markdown mode (from [[https://github.com/tpope/vim-markdown/issues/79][Make highlighting of markdownError optional · Issue #79 · tpope/vim-markdown]])
+#+BEGIN_SRC org
+" this disables the annoying red on things like underscores in markdown mode (from https://github.com/tpope/vim-markdown/issues/79)
+autocmd FileType markdown hi link markdownError NONE
+#+END_SRC
+* Settings for Gvim
+Font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there).
+#+BEGIN_SRC org
+" font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there)
+if has("win32")
+    set guifont=Lucida_Console:h14
+else
+    set guifont=DejaVu\ Sans\ Mono\ 14
+endif
+#+END_SRC
+Linespace - increases space between lines - fixes underscore not showing up in Gvim.
+#+BEGIN_SRC org
+set linespace=2         " increases space between lines - fixes underscore not showing up in Gvim
+#+END_SRC
+Disable toolbar in Gvim
+#+BEGIN_SRC org
+set guioptions-=T       " disable toolbar in Gvim
+#+END_SRC
+Disable gui dialogs in Gvim for simple choices
+#+BEGIN_SRC org
+set guioptions+=c       " disable gui dialogs in Gvim for simple choices
+#+END_SRC
+* Various settings
+Wildmenu: visual autocomplete for command menu
+#+BEGIN_SRC org
+set wildmenu            " visual autocomplete for command menu
+#+END_SRC
+Display incomplete commands
+#+BEGIN_SRC org
+set showcmd             " display incomplete commands
+#+END_SRC
+Prevents the initial message from showing up
+#+BEGIN_SRC org
+set shortmess+=I        " prevents the initial message from showing up
+#+END_SRC
+linebreak - prevents wrap mode from cutting words in the middle
+#+BEGIN_SRC org
+set linebreak           " prevents wrap mode from cutting words in the middle
+#+END_SRC
+Set relative line numbers to ease navigation by lines - toggle with :set rnu!
+#+BEGIN_SRC org
+set relativenumber      " set relative line numbers to ease navigation by lines - toggle with :set rnu!
+#+END_SRC
+scrolloff - set number of context lines to show above/below the cursor
+#+BEGIN_SRC org
+set scrolloff=4         " set number of context lines to show above/below cursor
+#+END_SRC
+Ask for confirmation on operations such as quit without saving
+#+BEGIN_SRC org
+set confirm             " ask for confirmation on operations such as quit without saving
+#+END_SRC
+Set vim to use the system clipboard
+#+BEGIN_SRC org
+set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
+#+END_SRC
+Switch to another buffer without asking for confirmation to save any unchanged changes.
+#+BEGIN_SRC org
+set hidden              " switch to another buffer without asking for confirmation to save any unsaved changes
+#+END_SRC
+Disable beeping
+#+BEGIN_SRC org
+set belloff=all " disable beeping
+#+END_SRC
+Display partial lines at the bottom of the screen
+#+BEGIN_SRC org
+set display=lastline " display partial lines at the bottom of the screen (instead of not doing so)
+#+END_SRC
+** Keybindings
+Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text
+#+BEGIN_SRC org
+nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
+#+END_SRC
+Delete letters without putting them in the clipboard
+#+BEGIN_SRC org
+nnoremap x "_x " delete letters without putting them in the clipboard
+#+END_SRC
+Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from https://stackoverflow.com/a/10723838)
+#+BEGIN_SRC org
+vnoremap p "_dp
+vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting (from https://stackoverflow.com/a/10723838)
+#+END_SRC
+I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways.
+#+BEGIN_SRC org
+" I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways
+nnoremap <Up> gk
+nnoremap <Down> gj
+#+END_SRC
+* Search settings
+Display search matches as characters are entered
+#+BEGIN_SRC org
+set incsearch           " display search matches as characters are entered
+#+END_SRC
+Highlight matches
+#+BEGIN_SRC org
+set hlsearch            " highlight matches
+#+END_SRC
+ignorecase - Case insensitive search e.g. if I want to find Foo as well when searching for /foo
+#+BEGIN_SRC org
+set ignorecase          " case-insensitive search e.g. if I want to find Foo as well when searching for /foo
+#+END_SRC
+smartcase - override the previous setting when the search pattern uses capitals e.g. /Foo finds only Foo.
+#+BEGIN_SRC org
+set smartcase           " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
+#+END_SRC
+* Custom statusline
+I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: https://shapeshed.com/vim-statuslines/
+#+BEGIN_SRC org
+set laststatus=2        " always show status line
+" custom statusline - I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme
+" Place to get started with the subject: https://shapeshed.com/vim-statuslines/
+set statusline=
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
+set statusline+=\(%{&fileformat}\) " file format
+set statusline+=\ %t " name of file in the buffer
+set statusline+=%m " modified flag
+set statusline+=%h " help buffer flag
+set statusline+=%r " read-only flag
+set statusline+=%=
+set statusline+=\ %k " keymap
+set statusline+=\ %y " filetype
+set statusline+=\ L%l " current line
+set statusline+=\ %p%% " percentage into file
+set statusline+=\ 
+" end of statusline
+#+END_SRC
+* Nationality and keymap settings
+Enable greek input - switch inputs with ctrl+6
+#+BEGIN_SRC org
+set keymap=greek_utf-8  " enables greek input - switch inputs with ctrl+6
+#+END_SRC
+iminsert - I don't want greek as default though in insert mode, so this setting makes sure that's the case.
+#+BEGIN_SRC org
+set iminsert=0          " I dont want greek as default though in insert mode
+#+END_SRC
+imsearch - with this, when searching it inherits the keymap currently used in insert mode.
+#+BEGIN_SRC org
+set imsearch=-1         " with this when searching it inherits the keymap currently used in insert mode
+#+END_SRC
+** Greek letters mapping.
+Map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc.
+#+BEGIN_SRC org
+" map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from https://www.void.gr/kargig/dot/vimrc
+map α a
+map Α A
+map β b
+map γ g
+map Γ G
+map δ d
+map Δ D
+map ε e
+map ζ z
+map η h
+map Η H
+map θ u
+map Θ U
+map ι i
+map Ι I
+map κ k
+map λ l
+map Λ L
+map Μ M
+map ν n
+map Ν N
+map ξ j
+map Ξ J
+map ο o
+map Ο O
+map π p
+map Π P
+map ρ r
+map Ρ R
+map σ s
+map ς w
+map τ t
+map Τ T
+map υ y
+map φ f
+map Φ F
+map χ x
+map ψ c
+map ω v
+map Ω V
+map γγ gg
+map αε ae
+" tip for Greek spell-checking: write in the file you want to spellcheck :setlocal spell spelllang=el, and it will download all necessary files and do the spellchecking by itself (tip from https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008)
+#+END_SRC
+
