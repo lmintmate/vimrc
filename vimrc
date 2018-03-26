@@ -1,6 +1,5 @@
-" set nocompatible        " no compatibility with vi - turns out this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found.
+" set nocompatible
 
-" == VIM PLUG SECTION ==
 " autoinstall
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -23,7 +22,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 
 " simple plugin to view list of recently opened files.
-" I'm using my fork which combines the improvements from lilydjwg's fork (most importantly the ability to remove items from the recent files list) with yegappan's upstream additions
 Plug 'lmintmate/MRU'
 
 " shows number of search results
@@ -43,9 +41,7 @@ Plug 'machakann/vim-highlightedyank'
 
 " Initialize plugin system
 call plug#end()
-" == END OF SECTION ==
 
-" Plugin config
 " SkyBison keymaps
 " general
 nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
@@ -65,22 +61,19 @@ nnoremap <silent> <leader>r :MRU<cr>
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
 
-" Rest of config
-set termguicolors       " makes terminal vim compatible with gui themes
+set termguicolors
 
-colorscheme blue-mood   " where I enable my home-made colorscheme
+colorscheme blue-mood
 
-" this disables the annoying red on things like underscores in markdown mode (from https://github.com/tpope/vim-markdown/issues/79)
 autocmd FileType markdown hi link markdownError NONE
 
-" font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there)
 if has("win32")
     set guifont=Lucida_Console:h14
 else
     set guifont=DejaVu\ Sans\ Mono\ 14
 endif
 
-set linespace=2         " increases space between lines - fixes underscore not showing up in Gvim
+set linespace=2
 
 set guioptions-=T       " disable toolbar in Gvim
 
@@ -94,28 +87,27 @@ set shortmess+=I        " prevents the initial message from showing up
 
 set linebreak           " prevents wrap mode from cutting words in the middle
 
-set relativenumber      " set relative line numbers to ease navigation by lines - toggle with :set rnu!
+set relativenumber      " set relative line numbers
 
 set scrolloff=4         " set number of context lines to show above/below cursor
 
-set confirm             " ask for confirmation on operations such as quit without saving
+set confirm             " ask for confirmation on operations
 
-set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
+set clipboard=unnamedplus " set vim to use the system clipboard
 
 set hidden              " switch to another buffer without asking for confirmation to save any unsaved changes
 
 set belloff=all " disable beeping
 
-set display=lastline " display partial lines at the bottom of the screen (instead of not doing so)
+set display=lastline " display partial lines at the bottom of the screen
 
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 
 nnoremap x "_x " delete letters without putting them in the clipboard
 
 vnoremap p "_dp
-vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting (from https://stackoverflow.com/a/10723838)
+vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
 
-" I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways
 nnoremap <Up> gk
 nnoremap <Down> gj
 
@@ -123,13 +115,12 @@ set incsearch           " display search matches as characters are entered
 
 set hlsearch            " highlight matches
 
-set ignorecase          " case-insensitive search e.g. if I want to find Foo as well when searching for /foo
+set ignorecase          " case-insensitive search
 
 set smartcase           " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 
 set laststatus=2        " always show status line
-" custom statusline - I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme
-" Place to get started with the subject: https://shapeshed.com/vim-statuslines/
+" beginning of statusline
 set statusline=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
 set statusline+=\(%{&fileformat}\) " file format
@@ -194,4 +185,3 @@ map ω v
 map Ω V
 map γγ gg
 map αε ae
-" tip for Greek spell-checking: write in the file you want to spellcheck :setlocal spell spelllang=el, and it will download all necessary files and do the spellchecking by itself (tip from https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008)

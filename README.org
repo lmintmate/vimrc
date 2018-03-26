@@ -15,12 +15,12 @@ In this here repository, I also include the old vimrc, just in case.
 * Nocompatible
 One thing that vim users are told to put in their vimrc files is ~set nocompatible~ in order to kill pesky vi behavior. However, it turns out that this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found. I keep it in my file though, albeit commented out, in order to remember this fact.
 #+BEGIN_SRC org
-" set nocompatible        " no compatibility with vi - turns out this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found.
+" set nocompatible
 #+END_SRC
 * Vim plug
 Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier.
+** Autoinstall vim-plug (Unix-only)
 #+BEGIN_SRC org
-" == VIM PLUG SECTION ==
 " autoinstall
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -41,7 +41,7 @@ endif
 #+END_SRC
 ** Declare the list of plugins
 *** vim-textobj-entire
-This is a custom textobject which allows me to easily select the entire buffer, most useful for when I want to paste something over it (because it turns out I can copy the entire buffer with ~:%y~).
+This is a custom textobject which allows me to easily select the entire buffer, most useful for when I want to paste something over it (because it turns out I can copy the entire buffer with ~:%y~). It provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines.
 #+BEGIN_SRC org
 " Declare the list of plugins.
 " dependency of vim-textobj-entire
@@ -50,10 +50,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 #+END_SRC
 *** MRU (Viewing recent files)
-I wanted to be able to view the files I had recently opened easily, and Ctrl-P didn't work as it doesn't recognise non-latin characters. I'm using thus MRU which is a good simple plugin for that purpose. Initially I was missing a feature to remove files from the list without resorting to editing the file it uses to store the list by hand, but then found lilydjwg's fork, which implemented this functionality. It was missing though some of the changes the creator yegappan had made upstream, so I made my own fork which combines the two, and which is the one I use.
+I wanted to be able to view the files I had recently opened easily, and Ctrl-P didn't work as it doesn't recognise non-latin characters. I'm using thus MRU which is a good simple plugin for that purpose. Initially I was missing a feature to remove items from the recent files list without resorting to editing the file it uses to store the list by hand, but then found lilydjwg's fork, which implemented this functionality. It was missing though some of the changes the creator yegappan had made upstream, so I made my own fork which combines the two, and which is the one I use.
 #+BEGIN_SRC org
 " simple plugin to view list of recently opened files.
-" I'm using my fork which combines the improvements from lilydjwg's fork (most importantly the ability to remove items from the recent files list) with yegappan's upstream additions
 Plug 'lmintmate/MRU'
 #+END_SRC
 *** vim-searchindex (Show number of search results)
@@ -90,14 +89,12 @@ Plug 'machakann/vim-highlightedyank'
 #+BEGIN_SRC org
 " Initialize plugin system
 call plug#end()
-" == END OF SECTION ==
 #+END_SRC
 * Plugin settings
 Here are set the plugin-specific settings.
 ** SkyBison keymaps
 The bindings for invoking SkyBison: general, for buffers, for help and for file finding.
 #+BEGIN_SRC org
-" Plugin config
 " SkyBison keymaps
 " general
 nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
@@ -127,22 +124,19 @@ let g:highlightedyank_highlight_duration = 590
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.
 #+BEGIN_SRC org
-" Rest of config
-set termguicolors       " makes terminal vim compatible with gui themes
+set termguicolors
 #+END_SRC
 Where I enable my home-made colorscheme
 #+BEGIN_SRC org
-colorscheme blue-mood   " where I enable my home-made colorscheme
+colorscheme blue-mood
 #+END_SRC
 This disables the annoying red on things like underscores in markdown mode (from [[https://github.com/tpope/vim-markdown/issues/79][Make highlighting of markdownError optional · Issue #79 · tpope/vim-markdown]])
 #+BEGIN_SRC org
-" this disables the annoying red on things like underscores in markdown mode (from https://github.com/tpope/vim-markdown/issues/79)
 autocmd FileType markdown hi link markdownError NONE
 #+END_SRC
 * Settings for Gvim
 Font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there).
 #+BEGIN_SRC org
-" font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there)
 if has("win32")
     set guifont=Lucida_Console:h14
 else
@@ -151,7 +145,7 @@ endif
 #+END_SRC
 Linespace - increases space between lines - fixes underscore not showing up in Gvim.
 #+BEGIN_SRC org
-set linespace=2         " increases space between lines - fixes underscore not showing up in Gvim
+set linespace=2
 #+END_SRC
 Disable toolbar in Gvim
 #+BEGIN_SRC org
@@ -180,7 +174,7 @@ set linebreak           " prevents wrap mode from cutting words in the middle
 #+END_SRC
 Set relative line numbers to ease navigation by lines - toggle with :set rnu!
 #+BEGIN_SRC org
-set relativenumber      " set relative line numbers to ease navigation by lines - toggle with :set rnu!
+set relativenumber      " set relative line numbers
 #+END_SRC
 scrolloff - set number of context lines to show above/below the cursor
 #+BEGIN_SRC org
@@ -188,11 +182,11 @@ set scrolloff=4         " set number of context lines to show above/below cursor
 #+END_SRC
 Ask for confirmation on operations such as quit without saving
 #+BEGIN_SRC org
-set confirm             " ask for confirmation on operations such as quit without saving
+set confirm             " ask for confirmation on operations
 #+END_SRC
 Set vim to use the system clipboard
 #+BEGIN_SRC org
-set clipboard=unnamedplus " set vim to use the system clipboard for cutting and pasting
+set clipboard=unnamedplus " set vim to use the system clipboard
 #+END_SRC
 Switch to another buffer without asking for confirmation to save any unchanged changes.
 #+BEGIN_SRC org
@@ -204,7 +198,7 @@ set belloff=all " disable beeping
 #+END_SRC
 Display partial lines at the bottom of the screen
 #+BEGIN_SRC org
-set display=lastline " display partial lines at the bottom of the screen (instead of not doing so)
+set display=lastline " display partial lines at the bottom of the screen
 #+END_SRC
 ** Keybindings
 Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text
@@ -218,11 +212,10 @@ nnoremap x "_x " delete letters without putting them in the clipboard
 Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from https://stackoverflow.com/a/10723838)
 #+BEGIN_SRC org
 vnoremap p "_dp
-vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting (from https://stackoverflow.com/a/10723838)
+vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
 #+END_SRC
 I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways.
 #+BEGIN_SRC org
-" I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways
 nnoremap <Up> gk
 nnoremap <Down> gj
 #+END_SRC
@@ -237,7 +230,7 @@ set hlsearch            " highlight matches
 #+END_SRC
 ignorecase - Case insensitive search e.g. if I want to find Foo as well when searching for /foo
 #+BEGIN_SRC org
-set ignorecase          " case-insensitive search e.g. if I want to find Foo as well when searching for /foo
+set ignorecase          " case-insensitive search
 #+END_SRC
 smartcase - override the previous setting when the search pattern uses capitals e.g. /Foo finds only Foo.
 #+BEGIN_SRC org
@@ -247,8 +240,7 @@ set smartcase           " override the previous when search pattern uses capital
 I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: https://shapeshed.com/vim-statuslines/
 #+BEGIN_SRC org
 set laststatus=2        " always show status line
-" custom statusline - I was tempted to use lightline, but then noticed that, because it needs separate theming, would look out of place with my home-made theme
-" Place to get started with the subject: https://shapeshed.com/vim-statuslines/
+" beginning of statusline
 set statusline=
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " encoding
 set statusline+=\(%{&fileformat}\) " file format
@@ -323,6 +315,5 @@ map ω v
 map Ω V
 map γγ gg
 map αε ae
-" tip for Greek spell-checking: write in the file you want to spellcheck :setlocal spell spelllang=el, and it will download all necessary files and do the spellchecking by itself (tip from https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008)
 #+END_SRC
-
+Tip for Greek spell-checking: write in the file you want to spellcheck :setlocal spell spelllang=el, and it will download all necessary files and do the spellchecking by itself (tip from [[https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008][Ubuntu-gr Forum - vim και ελληνικός ορθογράφος]])
