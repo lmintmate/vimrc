@@ -17,31 +17,24 @@ One thing that vim users are told to put in their vimrc files is ~set nocompatib
 #+BEGIN_SRC org
 " set nocompatible
 #+END_SRC
-* Vim plug
-Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier.
-** Autoinstall vim-plug (Unix-only)
+* Vim plug (Unix-only)
+  Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier. Vim-plug however requires git, and I generally don't have that installed on my Windows machines, so I'll have to make do without them when on these ones.
+** Autoinstall vim-plug
 From [[https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation][tips · junegunn/vim-plug Wiki · GitHub]].
 #+BEGIN_SRC org
-" autoinstall on Unix/Linux
 if has("unix")
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-endif
 #+END_SRC
 The above probably won't work on Windows, given it uses curl. To bootstrap vim-plug there, I can use [[https://github.com/junegunn/vim-plug#windows-powershell][a PowerShell script]].
 ** Defining the directory for installed plugins
-I have it conditionally defined, so that a different directory is used if on Windows.
 #+BEGIN_SRC org
 " Plugins will be downloaded under the specified directory.
-" download files on a different directory if on windows
-if has("win32")
-    call plug#begin('~/vimfiles/plugins')
-else
     call plug#begin('~/.vim/plugins')
-endif
 #+END_SRC
 ** Declare the list of plugins
 *** vim-textobj-entire
@@ -93,12 +86,14 @@ Plug 'machakann/vim-highlightedyank'
 #+BEGIN_SRC org
 " Initialize plugin system
 call plug#end()
+endif
 #+END_SRC
-* Plugin settings
-Here are set the plugin-specific settings.
+* Plugin settings (Unix-only)
+Here are set the plugin-specific settings. Because I have plugins only on Unix/Linux, I wrap the bindings inside a conditional.
 ** SkyBison keymaps
 The bindings for invoking SkyBison: general, for buffers, for help and for file finding.
 #+BEGIN_SRC org
+if has("unix")
 " SkyBison keymaps
 " general
 nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
@@ -124,6 +119,7 @@ nnoremap <silent> <leader>r :MRU<cr>
 #+BEGIN_SRC org
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
+endif
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.

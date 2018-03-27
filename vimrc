@@ -1,21 +1,15 @@
 " set nocompatible
 
-" autoinstall on Unix/Linux
 if has("unix")
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-endif
 
 " Plugins will be downloaded under the specified directory.
-" download files on a different directory if on windows
-if has("win32")
-    call plug#begin('~/vimfiles/plugins')
-else
     call plug#begin('~/.vim/plugins')
-endif
 
 " Declare the list of plugins.
 " dependency of vim-textobj-entire
@@ -43,7 +37,9 @@ Plug 'machakann/vim-highlightedyank'
 
 " Initialize plugin system
 call plug#end()
+endif
 
+if has("unix")
 " SkyBison keymaps
 " general
 nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
@@ -62,6 +58,7 @@ nnoremap <silent> <leader>r :MRU<cr>
 
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
+endif
 
 set termguicolors
 
