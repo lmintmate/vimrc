@@ -55,6 +55,10 @@ let g:skybison_fuzz = 2
 " MRU shortcut
 nnoremap <silent> <leader>r :MRU<cr>
 
+if !exists('##TextYankPost')
+  map y <Plug>(highlightedyank)
+endif
+
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
 

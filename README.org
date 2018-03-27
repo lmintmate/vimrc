@@ -114,6 +114,13 @@ let g:skybison_fuzz = 2
 " MRU shortcut
 nnoremap <silent> <leader>r :MRU<cr>
 #+END_SRC
+** Make highlightedyank work on vim older than 8.0.1394
+The version of vim on Windows is currently below 8.0.1394 (it is 8.0.586), so I'll need to use the trick provided on the repo to get it to work there.
+#+BEGIN_SRC org
+if !exists('##TextYankPost')
+  map y <Plug>(highlightedyank)
+endif
+#+END_SRC
 ** Duration of highlightedyank (in milliseconds)
 #+BEGIN_SRC org
 " duration of highlightedyank highlight in milliseconds
