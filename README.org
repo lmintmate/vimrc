@@ -135,10 +135,10 @@ This disables the annoying red on things like underscores in markdown mode (from
 autocmd FileType markdown hi link markdownError NONE
 #+END_SRC
 * Settings for Gvim
-Font for Gvim - DejaVu Sans Mono on Unix, Lucida Console on Windows (because DejaVu might not be installed there).
+Font for Gvim - DejaVu Sans Mono on Unix, Consolas on Windows (because DejaVu might not be installed there).
 #+BEGIN_SRC org
 if has("win32")
-    set guifont=Lucida_Console:h14
+    set guifont=Consolas:h14
 else
     set guifont=DejaVu\ Sans\ Mono\ 14
 endif
@@ -203,6 +203,10 @@ set display=lastline " display partial lines at the bottom of the screen
 Set encoding as utf-8, because this might be the default on Linux, but that isn't the case on Windows (there the encoding is some ~cp1253~ nonsense - looking at Wikipedia it seems this is another name for an encoding called [[https://en.wikipedia.org/wiki/Windows-1253][Windows-1253]], an obsolete encoding for Greek).
 #+BEGIN_SRC org
 set encoding=utf-8
+#+END_SRC
+Set backspace, because it might already be defined like that on Linux, but not on Windows.
+#+BEGIN_SRC org
+set backspace=indent,eol,start
 #+END_SRC
 ** Keybindings
 Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text

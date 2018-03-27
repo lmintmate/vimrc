@@ -67,7 +67,7 @@ colorscheme blue-mood
 autocmd FileType markdown hi link markdownError NONE
 
 if has("win32")
-    set guifont=Lucida_Console:h14
+    set guifont=Consolas:h14
 else
     set guifont=DejaVu\ Sans\ Mono\ 14
 endif
@@ -101,6 +101,8 @@ set belloff=all " disable beeping
 set display=lastline " display partial lines at the bottom of the screen
 
 set encoding=utf-8
+
+set backspace=indent,eol,start
 
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 
