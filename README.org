@@ -184,7 +184,7 @@ set confirm             " ask for confirmation on operations
 #+END_SRC
 Set vim to use the system clipboard
 #+BEGIN_SRC org
-set clipboard=unnamedplus " set vim to use the system clipboard
+set clipboard=unnamed,unnamedplus " set vim to use the system clipboard
 #+END_SRC
 Switch to another buffer without asking for confirmation to save any unchanged changes.
 #+BEGIN_SRC org

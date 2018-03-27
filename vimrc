@@ -90,7 +90,7 @@ set scrolloff=4         " set number of context lines to show above/below cursor
 
 set confirm             " ask for confirmation on operations
 
-set clipboard=unnamedplus " set vim to use the system clipboard
+set clipboard=unnamed,unnamedplus " set vim to use the system clipboard
 
 set hidden " switch to another buffer without asking for confirmation to save any unsaved changes
 
