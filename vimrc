@@ -100,6 +100,8 @@ set belloff=all " disable beeping
 
 set display=lastline " display partial lines at the bottom of the screen
 
+set encoding=utf-8
+
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 
 nnoremap x "_x " delete letters without putting them in the clipboard

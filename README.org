@@ -200,6 +200,10 @@ Display partial lines at the bottom of the screen
 #+BEGIN_SRC org
 set display=lastline " display partial lines at the bottom of the screen
 #+END_SRC
+Set encoding as utf-8, because this might be the default on Linux, but that isn't the case on Windows (there the encoding is some ~cp1253~ nonsense - looking at Wikipedia it seems this is another name for an encoding called [[https://en.wikipedia.org/wiki/Windows-1253][Windows-1253]], an obsolete encoding for Greek).
+#+BEGIN_SRC org
+set encoding=utf-8
+#+END_SRC
 ** Keybindings
 Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text
 #+BEGIN_SRC org
