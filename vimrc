@@ -39,7 +39,6 @@ Plug 'machakann/vim-highlightedyank'
 call plug#end()
 endif
 
-if has("unix")
 " SkyBison keymaps
 " general
 nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
@@ -58,7 +57,6 @@ nnoremap <silent> <leader>r :MRU<cr>
 
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
-endif
 
 set termguicolors
 
