@@ -30,7 +30,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 #+END_SRC
-The above probably won't work on Windows, given it uses curl. To bootstrap vim-plug there, I can use [[https://github.com/junegunn/vim-plug#windows-powershell][a PowerShell script]].
 ** Defining the directory for installed plugins
 #+BEGIN_SRC org
 " Plugins will be downloaded under the specified directory.
@@ -222,7 +221,7 @@ Delete letters without putting them in the clipboard
 #+BEGIN_SRC org
 nnoremap x "_x " delete letters without putting them in the clipboard
 #+END_SRC
-Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from https://stackoverflow.com/a/10723838)
+Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from [[https://stackoverflow.com/a/10723838]])
 #+BEGIN_SRC org
 vnoremap p "_dp
 vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
@@ -250,7 +249,7 @@ smartcase - override the previous setting when the search pattern uses capitals 
 set smartcase " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 #+END_SRC
 * Custom statusline
-I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use [[https://github.com/itchyny/lightline.vim][lightline]], but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: https://shapeshed.com/vim-statuslines/
+I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use [[https://github.com/itchyny/lightline.vim][lightline]], but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: [[https://shapeshed.com/vim-statuslines/]]
 #+BEGIN_SRC org
 set laststatus=2 " always show status line
 " beginning of statusline
