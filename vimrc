@@ -1,11 +1,13 @@
 " set nocompatible
 
-if has("unix")
+if executable('git')
 
+if has("unix")
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 endif
 
 " Plugins will be downloaded under the specified directory.
