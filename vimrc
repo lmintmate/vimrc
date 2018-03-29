@@ -152,12 +152,15 @@ set imsearch=-1 " with this when searching it inherits the keymap currently used
 map α a
 map Α A
 map β b
+map Β B
 map γ g
 map Γ G
 map δ d
 map Δ D
 map ε e
+map Ε E
 map ζ z
+map Ζ Z
 map η h
 map Η H
 map θ u
@@ -167,6 +170,7 @@ map Ι I
 map κ k
 map λ l
 map Λ L
+map μ m
 map Μ M
 map ν n
 map Ν N
