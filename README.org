@@ -282,7 +282,7 @@ imsearch - with this, when searching it inherits the keymap currently used in in
 set imsearch=-1 " with this when searching it inherits the keymap currently used in insert mode
 #+END_SRC
 ** Greek letters mapping.
-Map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek - idea from [[https://www.void.gr/kargig/dot/vimrc]].
+Map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek (idea from [[https://www.void.gr/kargig/dot/vimrc]]). Another unforeseen advantage of these mappings for me is that I can now use the commands that jump to letters (f,F,t,T) in order to jump to Greek letters without having to change my system keyboard layout midway through.
 #+BEGIN_SRC org
 map α a
 map Α A
