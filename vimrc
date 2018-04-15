@@ -43,6 +43,8 @@ Plug 'kshenoy/vim-signature'
 
 Plug 'itchyny/vim-highlighturl'
 
+Plug 'lmintmate/ShowMotion'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -79,6 +81,24 @@ let g:highlighturl_enable = 0
 	  autocmd!
 	  autocmd FileType text call highlighturl#enable_local()
 augroup END
+
+"*** Only highlights motions corresponding to the one you typed
+nmap w <Plug>(show-motion-w)
+nmap W <Plug>(show-motion-W)
+nmap b <Plug>(show-motion-b)
+nmap B <Plug>(show-motion-B)
+nmap e <Plug>(show-motion-e)
+nmap E <Plug>(show-motion-E)
+nmap ge <Plug>(show-motion-ge)
+nmap gE <Plug>(show-motion-gE)
+
+"Show motion for chars:  
+nmap f <Plug>(show-motion-f)
+nmap t <Plug>(show-motion-t)
+nmap F <Plug>(show-motion-F)
+nmap T <Plug>(show-motion-T)
+nmap ; <Plug>(show-motion-;)
+nmap , <Plug>(show-motion-,)
 
 set termguicolors
 

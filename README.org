@@ -99,6 +99,11 @@ This plugin does roughly the equivalent of emacs's goto-address-mode, that is it
 #+BEGIN_SRC org
 Plug 'itchyny/vim-highlighturl'
 #+END_SRC
+*** ShowMotion (highlight landing places of text motions)
+This plugin highlights the possible landing places of various text motions, thus giving some help on using these motions. I'm using my own fork because I changed the highlight colors to suit my colorscheme.
+#+BEGIN_SRC org
+Plug 'lmintmate/ShowMotion'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
@@ -162,6 +167,26 @@ let g:highlighturl_enable = 0
 	  autocmd!
 	  autocmd FileType text call highlighturl#enable_local()
 augroup END
+#+END_SRC
+** Bindings of ShowMotion plugin
+#+BEGIN_SRC org
+"*** Only highlights motions corresponding to the one you typed
+nmap w <Plug>(show-motion-w)
+nmap W <Plug>(show-motion-W)
+nmap b <Plug>(show-motion-b)
+nmap B <Plug>(show-motion-B)
+nmap e <Plug>(show-motion-e)
+nmap E <Plug>(show-motion-E)
+nmap ge <Plug>(show-motion-ge)
+nmap gE <Plug>(show-motion-gE)
+
+"Show motion for chars:  
+nmap f <Plug>(show-motion-f)
+nmap t <Plug>(show-motion-t)
+nmap F <Plug>(show-motion-F)
+nmap T <Plug>(show-motion-T)
+nmap ; <Plug>(show-motion-;)
+nmap , <Plug>(show-motion-,)
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.
