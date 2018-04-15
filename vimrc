@@ -41,6 +41,8 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'kshenoy/vim-signature'
 
+Plug 'itchyny/vim-highlighturl'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -69,6 +71,14 @@ endif
 let g:highlightedyank_highlight_duration = 590
 
 let g:SignatureMarkTextHL = "Title"
+
+let g:highlighturl_guifg ='#00ffff'
+
+let g:highlighturl_enable = 0
+	augroup highlighturl-filetype
+	  autocmd!
+	  autocmd FileType text call highlighturl#enable_local()
+augroup END
 
 set termguicolors
 

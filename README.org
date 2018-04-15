@@ -94,6 +94,11 @@ This plugin displays the marks created by the user on the signs column, which is
 #+BEGIN_SRC org
 Plug 'kshenoy/vim-signature'
 #+END_SRC
+*** vim-highlighturl (highlights urls)
+This plugin does roughly the equivalent of emacs's goto-address-mode, that is it highlights urls (it doesn't make them clickable though, unlike emacs).
+#+BEGIN_SRC org
+Plug 'itchyny/vim-highlighturl'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
@@ -142,6 +147,21 @@ let g:highlightedyank_highlight_duration = 590
 Their default color is red, which doesn't look too good on my colorscheme. With the setting below, I set their color to green, so that they'll look better.
 #+BEGIN_SRC org
 let g:SignatureMarkTextHL = "Title"
+#+END_SRC
+** Vim-highlighturl settings
+*** Highlight color
+The default one is darker than I wish it to be.
+#+BEGIN_SRC org
+let g:highlighturl_guifg ='#00ffff'
+#+END_SRC
+*** Enable the plugin only on text files
+The other filetypes where urls are usually encountered (e.g. markdown) manage the url highlighting by themselves, so no need to enable it there (code adapted from the example in the doc file).
+#+BEGIN_SRC org
+let g:highlighturl_enable = 0
+	augroup highlighturl-filetype
+	  autocmd!
+	  autocmd FileType text call highlighturl#enable_local()
+augroup END
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.
