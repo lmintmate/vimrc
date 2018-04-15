@@ -281,6 +281,12 @@ I sometimes want to be able to move by visual lines, and rebinding j and k to gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 #+END_SRC
+** Netrw
+Add relative line numbers to netrw: The below setting will help me navigate netrw buffers more easily, by showing relative line numbers.
+#+BEGIN_SRC org
+let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
+#+END_SRC
+A note in regards to netrw: My mileage with it varies. On my Linux machine it exhibits no bugs whatsoever, so I'm fine with using it whenever I need to navigate the filesystem there. On my Windows machine however it exhibits enough bugs to annoy me and make me look for an alternative file browser. In this case (that is whenever netrw acts all buggy), [[https://github.com/cocopon/vaffle.vim][Vaffle]] is the solution that works the best for me. In short, I occasionally use the Vaffle plugin but only on those cases where netrw exhibits enough bugs to make me not want to use it.
 * Search settings
 Display search matches as characters are entered
 #+BEGIN_SRC org

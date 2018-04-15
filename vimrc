@@ -140,6 +140,8 @@ vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
+
 set incsearch " display search matches as characters are entered
 
 set hlsearch " highlight matches
