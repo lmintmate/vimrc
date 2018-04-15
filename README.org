@@ -163,6 +163,10 @@ Disable toolbar in Gvim
 #+BEGIN_SRC org
 set guioptions-=T       " disable toolbar in Gvim
 #+END_SRC
+Disable gui tabline in Gvim - with this it will show the same one it uses for terminal vim.
+#+BEGIN_SRC org
+set guioptions-=e " Don't use gui tabline
+#+END_SRC
 Disable gui dialogs in Gvim for simple choices
 #+BEGIN_SRC org
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices

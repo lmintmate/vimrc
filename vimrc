@@ -82,6 +82,8 @@ set linespace=2
 
 set guioptions-=T       " disable toolbar in Gvim
 
+set guioptions-=e " Don't use gui tabline
+
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 
 set wildmenu            " visual autocomplete for command menu
