@@ -172,6 +172,10 @@ Wildmenu: visual autocomplete for command menu
 #+BEGIN_SRC org
 set wildmenu            " visual autocomplete for command menu
 #+END_SRC
+Wildmode: This determines how wildmenu will act. The default behavior (~wildmode=full~) completed the full name of the first option immediately, which was annoying because, more often than not, I do not wish to use that option. The setting below completes until the longest common string while showing the wildmenu, and tabbing a second time completes the full name of the remaining options.
+#+BEGIN_SRC org
+set wildmode=longest:full,full
+#+END_SRC
 Display incomplete commands
 #+BEGIN_SRC org
 set showcmd             " display incomplete commands

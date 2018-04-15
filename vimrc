@@ -86,6 +86,8 @@ set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 
 set wildmenu            " visual autocomplete for command menu
 
+set wildmode=longest:full,full
+
 set showcmd             " display incomplete commands
 
 set shortmess+=I        " prevents the initial message from showing up
