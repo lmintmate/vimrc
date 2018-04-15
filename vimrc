@@ -1,5 +1,7 @@
 " set nocompatible
 
+syntax on
+
 if executable('git')
 
 if has("unix")
