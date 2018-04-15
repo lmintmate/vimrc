@@ -89,6 +89,11 @@ This briefly highlights the text that's being yanked. It has helped me quite a b
 " Makes the yanked region apparent
 Plug 'machakann/vim-highlightedyank'
 #+END_SRC
+*** vim-signature (display marks)
+This plugin displays the marks created by the user on the signs column, which is good for remembering which marks were created.
+#+BEGIN_SRC org
+Plug 'kshenoy/vim-signature'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
@@ -132,6 +137,11 @@ endif
 #+BEGIN_SRC org
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
+#+END_SRC
+** Color of marks for vim-signature
+Their default color is red, which doesn't look too good on my colorscheme. With the setting below, I set their color to green, so that they'll look better.
+#+BEGIN_SRC org
+let g:SignatureMarkTextHL = "Title"
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.

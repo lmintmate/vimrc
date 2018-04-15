@@ -39,6 +39,8 @@ Plug 'paradigm/SkyBison'
 " Makes the yanked region apparent
 Plug 'machakann/vim-highlightedyank'
 
+Plug 'kshenoy/vim-signature'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -65,6 +67,8 @@ endif
 
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
+
+let g:SignatureMarkTextHL = "Title"
 
 set termguicolors
 
