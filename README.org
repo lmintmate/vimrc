@@ -258,6 +258,10 @@ Set backspace, because it might already be defined like that on Linux, but not o
 #+BEGIN_SRC org
 set backspace=indent,eol,start
 #+END_SRC
+Enable mouse in the terminal as well. The mouse is already enabled on the gui by default, but not on the terminal. This fixes that.
+#+BEGIN_SRC org
+set mouse=a
+#+END_SRC
 ** Keybindings
 Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text
 #+BEGIN_SRC org

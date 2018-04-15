@@ -128,6 +128,8 @@ set encoding=utf-8
 
 set backspace=indent,eol,start
 
+set mouse=a
+
 nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
 
 nnoremap x "_x " delete letters without putting them in the clipboard
