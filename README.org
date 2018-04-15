@@ -19,7 +19,7 @@ One thing that vim users are told to put in their vimrc files is ~set nocompatib
 " set nocompatible
 #+END_SRC
 ** Syntax on
-Here I enable the syntax because whole this might happen automatically on Linux, this isn't the case on one of my Windows machines.
+Here I enable the syntax because while this might happen automatically on Linux, this isn't the case on one of my Windows machines.
 #+BEGIN_SRC org
 syntax on
 #+END_SRC
