@@ -306,6 +306,12 @@ I sometimes want to be able to move by visual lines, and rebinding j and k to gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 #+END_SRC
+Keymap to save with ctrl-s. I decided to add this because sometimes I want to use a one-handed shortcut, since I might be holding something else (e.g. a book) with my other hand. However, I read online that this same shortcut is used as a stop signal by terminals, thus this keymap will only be active in Gvim (where I do my editing 99% of the time anyways). ~:up[date]~ is a command that writes the buffer only if it has been modified, which thus leaves the modification time unchanged if that is not the case.
+#+BEGIN_SRC org
+if has('gui_running')
+nnoremap <silent> <c-s> :update<CR>
+endif
+#+END_SRC
 ** Netrw
 Add relative line numbers to netrw: The below setting will help me navigate netrw buffers more easily, by showing relative line numbers.
 #+BEGIN_SRC org
