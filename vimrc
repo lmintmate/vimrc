@@ -45,6 +45,8 @@ Plug 'itchyny/vim-highlighturl'
 
 Plug 'lmintmate/ShowMotion'
 
+Plug 'jszakmeister/vim-togglecursor'
+
 " Initialize plugin system
 call plug#end()
 endif

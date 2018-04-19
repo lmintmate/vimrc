@@ -104,6 +104,11 @@ This plugin highlights the possible landing places of various text motions, thus
 #+BEGIN_SRC org
 Plug 'lmintmate/ShowMotion'
 #+END_SRC
+*** vim-togglercursor (changes the shape of the cursor on the terminal)
+[[https://github.com/jszakmeister/vim-togglecursor][This plugin]] changes the shape of the cursor on the terminal for insert and replace modes, to a vertical and a horizontal line respectively (as opposed to being a block in all of them). A similar plugin is [[https://github.com/wincent/terminus][terminus]], but I preferred to use this one instead as this one only configures the shape of the cursor and nothing else, while the other one also modifies some other stuff that I don't care about (so why use that if I was going to use only one feature of it?).
+#+BEGIN_SRC org
+Plug 'jszakmeister/vim-togglecursor'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
