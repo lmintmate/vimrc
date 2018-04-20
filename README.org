@@ -194,13 +194,19 @@ nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
 #+END_SRC
 * Colorscheme settings
-Set termguicolors: Makes terminal vim compatible with gui themes.
+Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).
 #+BEGIN_SRC org
+if has('termguicolors')
 set termguicolors
+endif
 #+END_SRC
-Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme]].
+Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme,blue-mood]]. I check first if the gui is running or the termguicolors feature exists. If any one of those two things is true, then I set my colorscheme to blue-mood. If none of these is true (e.g. if I happen to use terminal vim with a version below 7.4.1799 - where iirc the ~'termguicolors'~ option was first added) then the builtin colorscheme torte is used.
 #+BEGIN_SRC org
+if has('gui_running') || has('termguicolors')
 colorscheme blue-mood
+else
+colorscheme torte
+endif
 #+END_SRC
 This disables the annoying red on things like underscores in markdown mode (from [[https://github.com/tpope/vim-markdown/issues/79][Make highlighting of markdownError optional · Issue #79 · tpope/vim-markdown]])
 #+BEGIN_SRC org

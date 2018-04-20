@@ -102,9 +102,15 @@ nmap T <Plug>(show-motion-T)
 nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
 
+if has('termguicolors')
 set termguicolors
+endif
 
+if has('gui_running') || has('termguicolors')
 colorscheme blue-mood
+else
+colorscheme torte
+endif
 
 autocmd FileType markdown hi link markdownError NONE
 
