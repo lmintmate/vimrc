@@ -237,6 +237,13 @@ Disable gui dialogs in Gvim for simple choices
 #+BEGIN_SRC org
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 #+END_SRC
+Set shortcuts for hiding menubar and scrollbar - adapted from [[http://vim.wikia.com/wiki/Hide_toolbar_or_menus_to_see_more_text][Hide toolbar or menus to see more text | Vim Tips Wiki]].
+#+BEGIN_SRC org
+" hide menubar
+nnoremap <silent> <F9> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+" hide scrollbar
+nnoremap <silent> <F10> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+#+END_SRC
 * Various settings
 Wildmenu: visual autocomplete for command menu
 #+BEGIN_SRC org

@@ -128,6 +128,11 @@ set guioptions-=e " Don't use gui tabline
 
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 
+" hide menubar
+nnoremap <silent> <F9> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+" hide scrollbar
+nnoremap <silent> <F10> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+
 set wildmenu            " visual autocomplete for command menu
 
 set wildmode=longest:full,full
