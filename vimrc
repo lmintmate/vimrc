@@ -30,9 +30,6 @@ Plug 'google/vim-searchindex'
 " disables search highlighting when you are done searching and re-enables it when you search again
 Plug 'romainl/vim-cool'
 
-" Emmet - expandable abbreviations to ease writing html and css
-Plug 'mattn/emmet-vim'
-
 " Autocomplete system for the cmdline
 Plug 'paradigm/SkyBison'
 

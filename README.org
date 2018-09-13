@@ -71,12 +71,6 @@ Another annoying default behavior of Vim is that it keeps the highlighting of th
 " disables search highlighting when you are done searching and re-enables it when you search again
 Plug 'romainl/vim-cool'
 #+END_SRC
-*** Emmet
-Expandable abbreviations to ease writing html and css
-#+BEGIN_SRC org
-" Emmet - expandable abbreviations to ease writing html and css
-Plug 'mattn/emmet-vim'
-#+END_SRC
 *** SkyBison (Autocomplete system for the cmdline)
 Another thing I missed from emacs was a completion framework. SkyBison fixes this. I use it for completion of general commands, help topics, finding files, and buffers.
 #+BEGIN_SRC org
