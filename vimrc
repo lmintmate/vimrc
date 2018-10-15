@@ -44,6 +44,8 @@ Plug 'lmintmate/ShowMotion'
 
 Plug 'jszakmeister/vim-togglecursor'
 
+Plug 'sunaku/vim-modusline'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -98,6 +100,13 @@ nmap F <Plug>(show-motion-F)
 nmap T <Plug>(show-motion-T)
 nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
+
+autocmd VimEnter * call s:customize_modusline()
+function! s:customize_modusline() abort
+  " do your customization here, inside this function
+  let g:modusline_colors['t'] = '%#StatusLineTerm#'
+  let g:modusline_colors['R'] = '%#ErrorMsg#'
+endfunction
 
 if has('termguicolors')
 set termguicolors

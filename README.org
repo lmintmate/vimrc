@@ -103,6 +103,11 @@ Plug 'lmintmate/ShowMotion'
 #+BEGIN_SRC org
 Plug 'jszakmeister/vim-togglecursor'
 #+END_SRC
+*** vim-modusline (changes status line color according to mode)
+[[https://github.com/sunaku/vim-modusline][This plugin]] changes the color of the statusline according to the mode, using the hl highlight colors, which means that the colors depend on the used colorscheme. Since I am using a custom statusline, this is a good solution for me to get the statusline to change color without having to use a statusline plugin (e.g. lightline).
+#+BEGIN_SRC org
+Plug 'sunaku/vim-modusline'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
@@ -186,6 +191,16 @@ nmap F <Plug>(show-motion-F)
 nmap T <Plug>(show-motion-T)
 nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
+#+END_SRC
+** vim-modusline color settings
+In regards to the default colors used by modusline, I didn't want to use all of the defaults as they were, as, for example, the defined by modusline color of the terminal mode overrode StatusLineTerm. I initially couldn't override this however, so [[https://github.com/sunaku/vim-modusline/issues/1][the author of the plugin gave me an autocommand to use]], and this worked. In this autocommand I also changed the default highlight of the Replace mode.
+#+BEGIN_SRC org
+autocmd VimEnter * call s:customize_modusline()
+function! s:customize_modusline() abort
+  " do your customization here, inside this function
+  let g:modusline_colors['t'] = '%#StatusLineTerm#'
+  let g:modusline_colors['R'] = '%#ErrorMsg#'
+endfunction
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).
