@@ -317,16 +317,17 @@ set mouse=a
 ** Keybindings
 Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text
 #+BEGIN_SRC org
-nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
+nnoremap <CR> o<Esc>k
 #+END_SRC
 Delete letters without putting them in the clipboard
 #+BEGIN_SRC org
-nnoremap x "_x " delete letters without putting them in the clipboard
+nnoremap x "_x
 #+END_SRC
 Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from [[https://stackoverflow.com/a/10723838]])
 #+BEGIN_SRC org
+" don't copy to the clipboard the stuff I replace by pasting
 vnoremap p "_dp
-vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
+vnoremap P "_dP
 #+END_SRC
 I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways.
 #+BEGIN_SRC org

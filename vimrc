@@ -169,12 +169,13 @@ set backspace=indent,eol,start
 
 set mouse=a
 
-nnoremap <CR> o<Esc>k " have Enter add a new line below the current one without entering insert mode
+nnoremap <CR> o<Esc>k
 
-nnoremap x "_x " delete letters without putting them in the clipboard
+nnoremap x "_x
 
+" don't copy to the clipboard the stuff I replace by pasting
 vnoremap p "_dp
-vnoremap P "_dP " don't copy to the clipboard the stuff I replace by pasting
+vnoremap P "_dP
 
 nnoremap <Up> gk
 nnoremap <Down> gj
