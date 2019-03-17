@@ -108,6 +108,11 @@ Plug 'jszakmeister/vim-togglecursor'
 #+BEGIN_SRC org
 Plug 'sunaku/vim-modusline'
 #+END_SRC
+*** vim-markdown-folding (Fold markdown documents by section)
+[[https://github.com/masukomi/vim-markdown-folding][This plugin]] folds markdown documents by section, using the existing folding system. I load it only for the markdown files.
+#+BEGIN_SRC org
+Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system

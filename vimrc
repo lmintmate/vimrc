@@ -46,6 +46,8 @@ Plug 'jszakmeister/vim-togglecursor'
 
 Plug 'sunaku/vim-modusline'
 
+Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
+
 " Initialize plugin system
 call plug#end()
 endif
