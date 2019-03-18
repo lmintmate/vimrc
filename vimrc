@@ -48,6 +48,8 @@ Plug 'sunaku/vim-modusline'
 
 Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 
+Plug 'pbrisbin/vim-rename-file'
+
 " Initialize plugin system
 call plug#end()
 endif

@@ -113,6 +113,11 @@ Plug 'sunaku/vim-modusline'
 #+BEGIN_SRC org
 Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 #+END_SRC
+*** vim-rename-file (Rename buffer and file from within vim)
+[[https://github.com/pbrisbin/vim-rename-file][This plugin]] allows for renaming a file from within said file, without having to close it and go to the filemanager.
+#+BEGIN_SRC org
+Plug 'pbrisbin/vim-rename-file'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
