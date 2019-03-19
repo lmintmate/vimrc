@@ -2,6 +2,8 @@
 
 syntax on
 
+filetype plugin indent on
+
 if executable('git')
 
 if has("unix")

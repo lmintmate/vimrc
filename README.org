@@ -23,6 +23,11 @@ Here I enable the syntax because while this might happen automatically on Linux,
 #+BEGIN_SRC org
 syntax on
 #+END_SRC
+** filetype plugin indent on
+This might be this way by default on Linux, but this isn't the case with one of my Windows machines.
+#+BEGIN_SRC org
+filetype plugin indent on
+#+END_SRC
 * Vim plug (requires git)
   Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier. Vim-plug however requires git, and I generally don't have that installed on my Windows machines, which is why I wrapped this whole section in a conditional that checks if the system has the git executable available (this way I'll account for any Windows machines with git or Unix machines without git I might encounter in the future). On my git-less Windows machines, I'll use Vim 8's [[https://shapeshed.com/vim-packages/][native package loading]], and manually place the plugins into the correct folder. It might not be the most convenient way, but at least it doesn't require git, _and_ I'll get to use my plugins.
 ** Autoinstall vim-plug (Unix-only)
