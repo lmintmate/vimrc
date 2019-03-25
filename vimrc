@@ -116,6 +116,7 @@ function! s:customize_modusline() abort
   let g:modusline_colors['V'] = '%#User2#'
   let g:modusline_colors["\<C-V>"] = '%#User2#'
   let g:modusline_colors['R'] = '%#User3#'
+  let g:modusline_colors['Rv'] = '%#User3#'
   let g:modusline_colors['t'] = '%#StatusLineTerm#'  
 endfunction
 
