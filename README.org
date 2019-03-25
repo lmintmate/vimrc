@@ -10,8 +10,6 @@ I put in the beginning of this org file the string
 #+PROPERTY: header-args :tangle vimrc
 #+END_EXAMPLE
 which tells the src blocks to get tangled (= exported) to a file called vimrc, so that vim will be able to see it. The tangling is triggered by the command ~org-babel-tangle~, which has the shortcut ~C-c C-v t~. During my testing however I discovered that the global property doesn't work if a specific language isn't specified in the code blocks (tangling though worked when I had ~:tangle~ on every single source block, but that wasn't very practical). And since vimscript isn't supported by babel (though it could be, if someone wrote a plugin for that - but that won't be me, as I don't know enough emacs lisp nor vimscript for that), I decided to use org (which is supported) as a placeholder.
-** A note on the repository
-In this here repository, I also include the old vimrc, just in case.
 * Preliminaries
 ** Nocompatible
 One thing that vim users are told to put in their vimrc files is ~set nocompatible~ in order to kill pesky vi behavior. However, it turns out that this particular line is unecessary, as the help file informs that the compatible option is turned off if a vimrc file is found. I keep it in my file though, albeit commented out, in order to remember this fact.
