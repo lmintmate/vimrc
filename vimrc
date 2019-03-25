@@ -103,11 +103,20 @@ nmap T <Plug>(show-motion-T)
 nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
 
+autocmd ColorScheme *
+        \ hi User1 guifg=#000000 guibg=#7fff00 |
+        \ hi User2 guifg=#000000 guibg=#ffd700 |
+        \ hi User3 guifg=#000000 guibg=#ff6347
+
 autocmd VimEnter * call s:customize_modusline()
 function! s:customize_modusline() abort
   " do your customization here, inside this function
-  let g:modusline_colors['t'] = '%#StatusLineTerm#'
-  let g:modusline_colors['R'] = '%#ErrorMsg#'
+  let g:modusline_colors['i'] = '%#User1#'
+  let g:modusline_colors['v'] = '%#User2#'
+  let g:modusline_colors['V'] = '%#User2#'
+  let g:modusline_colors["\<C-V>"] = '%#User2#'
+  let g:modusline_colors['R'] = '%#User3#'
+  let g:modusline_colors['t'] = '%#StatusLineTerm#'  
 endfunction
 
 if has('termguicolors')
