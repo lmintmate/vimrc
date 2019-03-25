@@ -63,36 +63,36 @@ I wanted to be able to view the files I had recently opened easily, and Ctrl-P d
 Plug 'lmintmate/MRU'
 #+END_SRC
 *** vim-searchindex (Show number of search results)
-By default vim doesn't show the number of search results. This plugin fixes that.
+By default vim doesn't show the number of search results. [[https://github.com/google/vim-searchindex][This plugin]] fixes that.
 #+BEGIN_SRC org
 " shows number of search results
 Plug 'google/vim-searchindex'
 #+END_SRC
 *** vim-cool (disable search highlighting)
-Another annoying default behavior of Vim is that it keeps the highlighting of the search results even when I finished with the search. This plugin disables the search highlighting when any button is pressed.
+Another annoying default behavior of Vim is that it keeps the highlighting of the search results even when I finished with the search. [[https://github.com/romainl/vim-cool][This plugin]] disables the search highlighting when any button is pressed.
 #+BEGIN_SRC org
 " disables search highlighting when you are done searching and re-enables it when you search again
 Plug 'romainl/vim-cool'
 #+END_SRC
 *** SkyBison (Autocomplete system for the cmdline)
-Another thing I missed from emacs was a completion framework. SkyBison fixes this. I use it for completion of general commands, help topics, finding files, and buffers.
+Another thing I missed from emacs was a completion framework. [[https://github.com/paradigm/SkyBison][SkyBison]] fixes this. I use it for completion of general commands, help topics, finding files, and buffers.
 #+BEGIN_SRC org
 " Autocomplete system for the cmdline
 Plug 'paradigm/SkyBison'
 #+END_SRC
 *** vim-highlightedyank (Makes yanked region apparent)
-This briefly highlights the text that's being yanked. It has helped me quite a bit because I often miscalculate the area I am to yank.
+[[https://github.com/machakann/vim-highlightedyank][This plugin]] briefly highlights the text that's being yanked. It has helped me quite a bit because I often miscalculate the area I am to yank.
 #+BEGIN_SRC org
 " Makes the yanked region apparent
 Plug 'machakann/vim-highlightedyank'
 #+END_SRC
 *** vim-signature (display marks)
-This plugin displays the marks created by the user on the signs column, which is good for remembering which marks were created.
+[[https://github.com/kshenoy/vim-signature][This plugin]] displays the marks created by the user on the signs column, which is good for remembering which marks were created.
 #+BEGIN_SRC org
 Plug 'kshenoy/vim-signature'
 #+END_SRC
 *** vim-highlighturl (highlights urls)
-This plugin does roughly the equivalent of emacs's goto-address-mode, that is it highlights urls (it doesn't make them clickable though, unlike emacs).
+[[https://github.com/itchyny/vim-highlighturl][This plugin]] does roughly the equivalent of emacs's goto-address-mode, that is it highlights urls (it doesn't make them clickable though, unlike emacs).
 #+BEGIN_SRC org
 Plug 'itchyny/vim-highlighturl'
 #+END_SRC
