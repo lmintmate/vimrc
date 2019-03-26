@@ -2,6 +2,37 @@
 #+TITLE: My literate Vim configuration
 # Note: export with org-babel-tangle (C-c C-v t)
 # More info at: https://org-babel.readthedocs.io/en/latest/header-args/#tangle
+* Table of Contents                                                     :TOC:
+- [[#introduction][Introduction]]
+  - [[#how-the-magic-is-done][How the magic is done]]
+- [[#preliminaries][Preliminaries]]
+  - [[#nocompatible][Nocompatible]]
+  - [[#syntax-on][Syntax on]]
+  - [[#filetype-plugin-indent-on][filetype plugin indent on]]
+- [[#vim-plug-requires-git][Vim plug (requires git)]]
+  - [[#autoinstall-vim-plug-unix-only][Autoinstall vim-plug (Unix-only)]]
+  - [[#defining-the-directory-for-installed-plugins][Defining the directory for installed plugins]]
+  - [[#declare-the-list-of-plugins][Declare the list of plugins]]
+  - [[#initialize-the-plugin-system][Initialize the plugin system]]
+- [[#plugin-settings][Plugin settings]]
+  - [[#skybison-keymaps][SkyBison keymaps]]
+  - [[#skybison-substring-matching][SkyBison substring matching]]
+  - [[#shortcut-for-invoking-mru][Shortcut for invoking MRU]]
+  - [[#duration-of-highlightedyank-in-milliseconds][Duration of highlightedyank (in milliseconds)]]
+  - [[#color-of-marks-for-vim-signature][Color of marks for vim-signature]]
+  - [[#vim-highlighturl-settings][Vim-highlighturl settings]]
+  - [[#bindings-of-showmotion-plugin][Bindings of ShowMotion plugin]]
+  - [[#vim-modusline-color-settings][vim-modusline color settings]]
+- [[#colorscheme-settings][Colorscheme settings]]
+- [[#settings-for-gvim][Settings for Gvim]]
+- [[#various-settings][Various settings]]
+  - [[#keybindings][Keybindings]]
+  - [[#netrw][Netrw]]
+- [[#search-settings][Search settings]]
+- [[#custom-statusline][Custom statusline]]
+- [[#nationality-and-keymap-settings][Nationality and keymap settings]]
+  - [[#greek-letters-mapping][Greek letters mapping.]]
+
 * Introduction
 A while ago, I thought I'd try out Vim, to see what the fuss was about. Turns out I like its modal editing method a lot. What I miss from emacs though is having a literate configuration file, as I like making comments on my config options, and filling the vimrc file with comments doesn't look very clean. Then I remembered the existence of org-babel, and after reading [[https://orgmode.org/worg/org-contrib/babel/languages.html][that tangling is language-agnostic]], I thought I’d try it out.
 ** How the magic is done
