@@ -52,6 +52,8 @@ Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 
 Plug 'pbrisbin/vim-rename-file'
 
+Plug 'amadeus/vim-convert-color-to'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -119,6 +121,8 @@ function! s:customize_modusline() abort
   let g:modusline_colors['Rv'] = '%#User3#'
   let g:modusline_colors['t'] = '%#StatusLineTerm#'  
 endfunction
+
+nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
 
 if has('termguicolors')
 set termguicolors

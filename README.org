@@ -2,7 +2,7 @@
 #+TITLE: My literate Vim configuration
 # Note: export with org-babel-tangle (C-c C-v t)
 # More info at: https://org-babel.readthedocs.io/en/latest/header-args/#tangle
-* Table of Contents                                                     :TOC:
+* Table of Contents                                                     :TOC_3:
 - [[#introduction][Introduction]]
   - [[#how-the-magic-is-done][How the magic is done]]
 - [[#preliminaries][Preliminaries]]
@@ -13,6 +13,20 @@
   - [[#autoinstall-vim-plug-unix-only][Autoinstall vim-plug (Unix-only)]]
   - [[#defining-the-directory-for-installed-plugins][Defining the directory for installed plugins]]
   - [[#declare-the-list-of-plugins][Declare the list of plugins]]
+    - [[#vim-textobj-entire][vim-textobj-entire]]
+    - [[#mru-viewing-recent-files][MRU (Viewing recent files)]]
+    - [[#vim-searchindex-show-number-of-search-results][vim-searchindex (Show number of search results)]]
+    - [[#vim-cool-disable-search-highlighting][vim-cool (disable search highlighting)]]
+    - [[#skybison-autocomplete-system-for-the-cmdline][SkyBison (Autocomplete system for the cmdline)]]
+    - [[#vim-highlightedyank-makes-yanked-region-apparent][vim-highlightedyank (Makes yanked region apparent)]]
+    - [[#vim-signature-display-marks][vim-signature (display marks)]]
+    - [[#vim-highlighturl-highlights-urls][vim-highlighturl (highlights urls)]]
+    - [[#showmotion-highlight-landing-places-of-text-motions][ShowMotion (highlight landing places of text motions)]]
+    - [[#vim-togglercursor-changes-the-shape-of-the-cursor-on-the-terminal][vim-togglercursor (changes the shape of the cursor on the terminal)]]
+    - [[#vim-modusline-changes-status-line-color-according-to-mode][vim-modusline (changes status line color according to mode)]]
+    - [[#vim-markdown-folding-fold-markdown-documents-by-section][vim-markdown-folding (Fold markdown documents by section)]]
+    - [[#vim-rename-file-rename-buffer-and-file-from-within-vim][vim-rename-file (Rename buffer and file from within vim)]]
+    - [[#vim-convert-color-to-convert-color-strings-to-different-formats][vim-convert-color-to (Convert color strings to different formats)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -21,8 +35,11 @@
   - [[#duration-of-highlightedyank-in-milliseconds][Duration of highlightedyank (in milliseconds)]]
   - [[#color-of-marks-for-vim-signature][Color of marks for vim-signature]]
   - [[#vim-highlighturl-settings][Vim-highlighturl settings]]
+    - [[#highlight-color][Highlight color]]
+    - [[#enable-the-plugin-only-on-text-files][Enable the plugin only on text files]]
   - [[#bindings-of-showmotion-plugin][Bindings of ShowMotion plugin]]
   - [[#vim-modusline-color-settings][vim-modusline color settings]]
+  - [[#vim-convert-color-to-keybinding][vim-convert-color-to keybinding]]
 - [[#colorscheme-settings][Colorscheme settings]]
 - [[#settings-for-gvim][Settings for Gvim]]
 - [[#various-settings][Various settings]]
@@ -152,6 +169,11 @@ Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 #+BEGIN_SRC org
 Plug 'pbrisbin/vim-rename-file'
 #+END_SRC
+*** vim-convert-color-to (Convert color strings to different formats)
+[[https://github.com/amadeus/vim-convert-color-to][This plugin]] converts color strings between many different formats e.g. hsl to hex.
+#+BEGIN_SRC org
+Plug 'amadeus/vim-convert-color-to'
+#+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
 " Initialize plugin system
@@ -250,6 +272,11 @@ function! s:customize_modusline() abort
   let g:modusline_colors['Rv'] = '%#User3#'
   let g:modusline_colors['t'] = '%#StatusLineTerm#'  
 endfunction
+#+END_SRC
+** vim-convert-color-to keybinding
+When I want to convert multiple lines from one color format to another (e.g hsl to hex) with this plugin, a macro is the most convenient method. However writing the command on the command mode or scrolling up its history can be error-prone, as one might accidentally unleash a different command instead if they mistype or scroll further in the history than they intended (when testing the plugin for example, I accidentally unleashed a macro that attempted to write a new file instead!). Thus here I create a keybinding that calls the function, bound to ~<Leader>c~. As the ~:ConvertColorTo~ command requires an argument, this keybinding will be for converting to hex, as this is by far my most common usecase.
+#+BEGIN_SRC org
+nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).
