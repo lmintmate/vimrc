@@ -54,6 +54,8 @@ Plug 'pbrisbin/vim-rename-file'
 
 Plug 'amadeus/vim-convert-color-to'
 
+Plug 'dahu/lisper-vim'
+
 " Initialize plugin system
 call plug#end()
 endif

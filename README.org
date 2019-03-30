@@ -27,6 +27,7 @@
     - [[#vim-markdown-folding-fold-markdown-documents-by-section][vim-markdown-folding (Fold markdown documents by section)]]
     - [[#vim-rename-file-rename-buffer-and-file-from-within-vim][vim-rename-file (Rename buffer and file from within vim)]]
     - [[#vim-convert-color-to-convert-color-strings-to-different-formats][vim-convert-color-to (Convert color strings to different formats)]]
+    - [[#lisper-vim-provides-lisp-repl-functionality-for-vim][lisper-vim (provides Lisp REPL functionality for vim)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -173,6 +174,11 @@ Plug 'pbrisbin/vim-rename-file'
 [[https://github.com/amadeus/vim-convert-color-to][This plugin]] converts color strings between many different formats e.g. hsl to hex.
 #+BEGIN_SRC org
 Plug 'amadeus/vim-convert-color-to'
+#+END_SRC
+*** lisper-vim (provides Lisp REPL functionality for vim)
+[[https://github.com/mattn/lisper-vim][This made by mattn plugin]] provides functions that can evaluate lisp code from within vim, which can thus help me have a nifty little [[https://en.wikipedia.org/wiki/Polish_notation][prefix notation]] calculator for when I don't feel like opening emacs for this. Most useful for me are the functions ~:LisperEvalLine~, which evaluates the line on which the cursor is and shows the result on the commandline at the bottom of the screen, and ~:LisperRepl~, which creats a REPL environment on the bottom of the screen. Said REPL can be exited by typing ~(exit)~. I use [[https://github.com/dahu/lisper-vim][the fork made by dahu, since it's 1 commit ahead]].
+#+BEGIN_SRC org
+Plug 'dahu/lisper-vim'
 #+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
