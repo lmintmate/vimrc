@@ -187,7 +187,7 @@ set backspace=indent,eol,start
 
 set mouse=a
 
-nnoremap <CR> o<Esc>k
+nnoremap <CR> O<Esc>j
 
 nnoremap x "_x
 

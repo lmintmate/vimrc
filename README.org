@@ -397,9 +397,9 @@ Enable mouse in the terminal as well. The mouse is already enabled on the gui by
 set mouse=a
 #+END_SRC
 ** Keybindings
-Keymap to have enter add a new line below the current one without entering insert mode - good for spacing out text
+Keymap to have enter add a new line without entering insert mode - good for spacing out text. I used to have it as ~nnoremap <CR>o<Esc>k~, but it was a bit jarring for some reason. I realised a while after that Enter in the conventional text editors does not in fact add a line below, as I thought, but rather a line /above/ from where the cursor is, so I corrected my keybinding accordingly.
 #+BEGIN_SRC org
-nnoremap <CR> o<Esc>k
+nnoremap <CR> O<Esc>j
 #+END_SRC
 Delete letters without putting them in the clipboard
 #+BEGIN_SRC org
