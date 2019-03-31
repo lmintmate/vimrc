@@ -28,6 +28,7 @@
     - [[#vim-rename-file-rename-buffer-and-file-from-within-vim][vim-rename-file (Rename buffer and file from within vim)]]
     - [[#vim-convert-color-to-convert-color-strings-to-different-formats][vim-convert-color-to (Convert color strings to different formats)]]
     - [[#lisper-vim-provides-lisp-repl-functionality-for-vim][lisper-vim (provides Lisp REPL functionality for vim)]]
+    - [[#vim-gitbranch-shows-git-branch-on-statusline][vim-gitbranch (shows git branch on statusline)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -179,6 +180,11 @@ Plug 'amadeus/vim-convert-color-to'
 [[https://github.com/mattn/lisper-vim][This made by mattn plugin]] provides functions that can evaluate lisp code from within vim, which can thus help me have a nifty little [[https://en.wikipedia.org/wiki/Polish_notation][prefix notation]] calculator for when I don't feel like opening emacs for this. Most useful for me are the functions ~:LisperEvalLine~, which evaluates the line on which the cursor is and shows the result on the commandline at the bottom of the screen, and ~:LisperRepl~, which creats a REPL environment on the bottom of the screen. Said REPL can be exited by typing ~(exit)~. I use [[https://github.com/dahu/lisper-vim][the fork made by dahu, since it's 1 commit ahead]].
 #+BEGIN_SRC org
 Plug 'dahu/lisper-vim'
+#+END_SRC
+*** vim-gitbranch (shows git branch on statusline)
+[[https://github.com/itchyny/vim-gitbranch][This plugin]] shows the current git branch on the statusline, and thus provides a quick way for me to see if a file is under version control, so that I'll be more carful manipulating it.
+#+BEGIN_SRC org
+Plug 'itchyny/vim-gitbranch'
 #+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
@@ -446,7 +452,7 @@ smartcase - override the previous setting when the search pattern uses capitals 
 set smartcase " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 #+END_SRC
 * Custom statusline
-I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use [[https://github.com/itchyny/lightline.vim][lightline]], but then noticed that, because it needs separate theming, would look out of place with my home-made theme. So I made a custom statusline instead. Here is a good place to get started with the subject: [[https://shapeshed.com/vim-statuslines/]]
+I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use [[https://github.com/itchyny/lightline.vim][lightline]], but then noticed that, because it needs separate theming, would look out of place with my home-made theme (I hadn't yet made a lightline theme at the time, and even now that I have I don't feel like rewriting my entire statusline in order to make it slightly fancier). So I made a custom statusline instead (here is a good place to get started with the subject: [[https://shapeshed.com/vim-statuslines/]]). This statusline shows on the left side the file enconding, the file format, the file name, whether the file is modified, whether this is a help buffer, or a read-only buffer, and on the right side the keymap, the filetype, the current line, and the percentage into file. In addition, also on the left side of the statusline, I added the function provided by [[https://github.com/itchyny/vim-gitbranch][vim-gitbranch]] ~gitbranch#name~, in order to be able to see whether the file is in version control or not. However, I don't want this to error out while on Windows, where I don't have git installed, so I tell it to load only if the parameter ~g:loaded_gitbranch~, which is defined in vim-gitbranch, is present, as I'm not going to install a plugin about git on a gitless environment (code for said conditional loading adapted from [[https://stackoverflow.com/a/5986830][here]]).
 #+BEGIN_SRC org
 set laststatus=2 " always show status line
 " beginning of statusline
@@ -457,6 +463,7 @@ set statusline+=\ %t " name of file in the buffer
 set statusline+=%m " modified flag
 set statusline+=%h " help buffer flag
 set statusline+=%r " read-only flag
+set statusline+=\ %{exists('g:loaded_gitbranch')?gitbranch#name():''}
 set statusline+=%=
 set statusline+=\ %k " keymap
 set statusline+=\ %y " filetype

@@ -56,6 +56,8 @@ Plug 'amadeus/vim-convert-color-to'
 
 Plug 'dahu/lisper-vim'
 
+Plug 'itchyny/vim-gitbranch'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -221,6 +223,7 @@ set statusline+=\ %t " name of file in the buffer
 set statusline+=%m " modified flag
 set statusline+=%h " help buffer flag
 set statusline+=%r " read-only flag
+set statusline+=\ %{exists('g:loaded_gitbranch')?gitbranch#name():''}
 set statusline+=%=
 set statusline+=\ %k " keymap
 set statusline+=\ %y " filetype
