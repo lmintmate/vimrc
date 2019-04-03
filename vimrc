@@ -58,6 +58,8 @@ Plug 'dahu/lisper-vim'
 
 Plug 'itchyny/vim-gitbranch'
 
+Plug 'niklaas/lightline-gitdiff'
+
 " Initialize plugin system
 call plug#end()
 endif
@@ -127,6 +129,9 @@ function! s:customize_modusline() abort
 endfunction
 
 nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
+
+let g:lightline#gitdiff#indicator_added = '+'
+let g:lightline#gitdiff#indicator_deleted = '-'
 
 if has('termguicolors')
 set termguicolors
@@ -224,6 +229,7 @@ set statusline+=%m " modified flag
 set statusline+=%h " help buffer flag
 set statusline+=%r " read-only flag
 set statusline+=\ %{exists('g:loaded_gitbranch')?gitbranch#name():''}
+set statusline+=\ %{exists('g:lightline#gitdiff#cache')?lightline#gitdiff#get():''}
 set statusline+=%=
 set statusline+=\ %k " keymap
 set statusline+=\ %y " filetype
