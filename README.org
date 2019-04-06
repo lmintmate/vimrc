@@ -30,6 +30,7 @@
     - [[#lisper-vim-provides-lisp-repl-functionality-for-vim][lisper-vim (provides Lisp REPL functionality for vim)]]
     - [[#vim-gitbranch-shows-git-branch-on-statusline][vim-gitbranch (shows git branch on statusline)]]
     - [[#lightline-gitdiff-shows-number-of-changes-from-last-commit-on-statusline][lightline-gitdiff (shows number of changes from last commit on statusline)]]
+    - [[#orgvim-syntax-highlighting-and-folding-for-org-mode-files][org.vim (syntax highlighting and folding for org-mode files)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -192,6 +193,11 @@ Plug 'itchyny/vim-gitbranch'
 [[https://github.com/niklaas/lightline-gitdiff/][This plugin]], which, despite its name, doesn't require lightline to use, shows the number of changes from the last commit on the statusline. I use it in combination with vim-gitbranch because that one only shows if a file is under version control and not whether I changes anything.
 #+BEGIN_SRC org
 Plug 'niklaas/lightline-gitdiff'
+#+END_SRC
+*** org.vim (syntax highlighting and folding for org-mode files)
+I was tired of seeing the org-mode files be detected as conf and highlighted incorrectly by vim, so I tried finding a plugin that would provide syntax highlighting. The most popular by far is [[https://github.com/jceb/vim-orgmode][vim-orgmode]], but that implements a lot of additional stuff I don't want, plus it complained that an optional plugin I didn't want was missing every time. I tried next [[https://github.com/filipelbc/orgmode.vim][orgmode.vim]], but that one defined the highlight colors in the plugin itself, and thus made a lot of color choices I didn't like, and I would have to change a lot of settings (if I was even able to) to achieve a better look. Finally I found [[https://github.com/axvr/org.vim][this plugin]], which is pretty much what I wanted from an org-mode plugin for vim (after all, if I want something more advanced, I'll do it from emacs), and it also draws its colors from the used colorscheme. Only slight drawback is that some things are colored differently than what I would ideally like (e.g. headline levels 1, 2 and 3 have the same color), but that doesn't change the fact that I'm glad to have found this plugin. 
+#+BEGIN_SRC org
+Plug 'axvr/org.vim'
 #+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org

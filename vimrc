@@ -60,6 +60,8 @@ Plug 'itchyny/vim-gitbranch'
 
 Plug 'niklaas/lightline-gitdiff'
 
+Plug 'axvr/org.vim'
+
 " Initialize plugin system
 call plug#end()
 endif
