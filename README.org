@@ -304,10 +304,11 @@ When I want to convert multiple lines from one color format to another (e.g hsl 
 nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
 #+END_SRC
 ** lightline-gitdiff indicators
-The default indicators are ~A:~ for added, ~D:~ for removed. I prefer something more minimalist however.
+The default indicators are ~A:~ for added, ~D:~ for removed, and ~M:~ for modified. I prefer something more minimalist however.
 #+BEGIN_SRC org
 let g:lightline#gitdiff#indicator_added = '+'
 let g:lightline#gitdiff#indicator_deleted = '-'
+let g:lightline#gitdiff#indicator_modified = '≠'
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).

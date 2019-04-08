@@ -134,6 +134,7 @@ nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
 
 let g:lightline#gitdiff#indicator_added = '+'
 let g:lightline#gitdiff#indicator_deleted = '-'
+let g:lightline#gitdiff#indicator_modified = '≠'
 
 if has('termguicolors')
 set termguicolors
