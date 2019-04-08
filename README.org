@@ -185,12 +185,12 @@ Plug 'amadeus/vim-convert-color-to'
 Plug 'dahu/lisper-vim'
 #+END_SRC
 *** vim-gitbranch (shows git branch on statusline)
-[[https://github.com/itchyny/vim-gitbranch][This plugin]] shows the current git branch on the statusline, and thus provides a quick way for me to see if a file is under version control, so that I'll be more carful manipulating it.
+[[https://github.com/itchyny/vim-gitbranch][This plugin]] shows the current git branch on the statusline, and thus provides a quick way for me to see if a file is under version control, so that I'll be more careful manipulating it.
 #+BEGIN_SRC org
 Plug 'itchyny/vim-gitbranch'
 #+END_SRC
 *** lightline-gitdiff (shows number of changes from last commit on statusline)
-[[https://github.com/niklaas/lightline-gitdiff/][This plugin]], which, despite its name, doesn't require lightline to use, shows the number of changes from the last commit on the statusline. I use it in combination with vim-gitbranch because that one only shows if a file is under version control and not whether I changes anything.
+[[https://github.com/niklaas/lightline-gitdiff/][This plugin]], which, despite its name, doesn't require lightline to use, shows the number of changes from the last commit on the statusline. I use it in combination with vim-gitbranch because that one only shows if a file is under version control and not whether I changed anything.
 #+BEGIN_SRC org
 Plug 'niklaas/lightline-gitdiff'
 #+END_SRC
