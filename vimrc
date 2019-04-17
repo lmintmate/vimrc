@@ -238,6 +238,7 @@ set statusline+=\ %k " keymap
 set statusline+=\ %y " filetype
 set statusline+=\ L%l " current line
 set statusline+=\ %p%% " percentage into file
+set statusline+=\ %{strftime(\"%H:%M\")}
 set statusline+=\ 
 " end of statusline
 
