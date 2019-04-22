@@ -200,6 +200,7 @@ set mouse=a
 nnoremap <CR> O<Esc>j
 
 nnoremap x "_x
+nnoremap X "_X
 
 " don't copy to the clipboard the stuff I replace by pasting
 vnoremap p "_dp

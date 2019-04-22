@@ -435,6 +435,7 @@ nnoremap <CR> O<Esc>j
 Delete letters without putting them in the clipboard
 #+BEGIN_SRC org
 nnoremap x "_x
+nnoremap X "_X
 #+END_SRC
 Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from [[https://stackoverflow.com/a/10723838]])
 #+BEGIN_SRC org
