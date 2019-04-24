@@ -14,8 +14,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 endif
 
-" Plugins will be downloaded under the specified directory.
-    call plug#begin('~/.vim/plugins')
+if has('win32')
+    let $MYPLUGDIRECTORY = "~/vimfiles/plugins"
+else
+    let $MYPLUGDIRECTORY = "~/.vim/plugins"
+endif
+
+call plug#begin($MYPLUGDIRECTORY)
 
 " Declare the list of plugins.
 " dependency of vim-textobj-entire

@@ -87,7 +87,7 @@ filetype plugin indent on
 * Vim plug (requires git)
   Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier. Vim-plug however requires git, and I generally don't have that installed on my Windows machines, which is why I wrapped this whole section in a conditional that checks if the system has the git executable available (this way I'll account for any Windows machines with git or Unix machines without git I might encounter in the future). On my git-less Windows machines, I'll use Vim 8's [[https://shapeshed.com/vim-packages/][native package loading]], and manually place the plugins into the correct folder. It might not be the most convenient way, but at least it doesn't require git, _and_ I'll get to use my plugins.
 ** Autoinstall vim-plug (Unix-only)
-From [[https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation][tips · junegunn/vim-plug Wiki · GitHub]]. This part probably requires a Unix system, since it uses curl, hence the conditional that checks if the system is Unix wrapped around it.
+From [[https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation][tips · junegunn/vim-plug Wiki · GitHub]]. This part probably requires a Unix system, since it uses curl, hence the conditional that checks if the system is Unix wrapped around it. In case I'm on a Windows system with git, I'll probably download and place the file in the correct folder manually.
 #+BEGIN_SRC org
 if executable('git')
 
@@ -100,9 +100,15 @@ endif
 endif
 #+END_SRC
 ** Defining the directory for installed plugins
+Features a conditional for using different directories on Unix and Windows with git systems (from [[https://vi.stackexchange.com/a/15227][https://vi.stackexchange.com/a/15227]]).
 #+BEGIN_SRC org
-" Plugins will be downloaded under the specified directory.
-    call plug#begin('~/.vim/plugins')
+if has('win32')
+    let $MYPLUGDIRECTORY = "~/vimfiles/plugins"
+else
+    let $MYPLUGDIRECTORY = "~/.vim/plugins"
+endif
+
+call plug#begin($MYPLUGDIRECTORY)
 #+END_SRC
 ** Declare the list of plugins
 *** vim-textobj-entire
