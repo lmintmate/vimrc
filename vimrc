@@ -4,6 +4,8 @@ syntax on
 
 filetype plugin indent on
 
+let mapleader="\<Space>"
+
 if executable('git')
 
 if has("unix")
@@ -66,6 +68,8 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'niklaas/lightline-gitdiff'
 
 Plug 'axvr/org.vim'
+
+Plug 'lacygoill/vim-freekeys'
 
 " Initialize plugin system
 call plug#end()
