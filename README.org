@@ -38,7 +38,7 @@
     - [[#lightline-gitdiff-shows-number-of-changes-from-last-commit-on-statusline][lightline-gitdiff (shows number of changes from last commit on statusline)]]
     - [[#orgvim-syntax-highlighting-and-folding-for-org-mode-files][org.vim (syntax highlighting and folding for org-mode files)]]
     - [[#vim-freekeys-shows-free-keys-available-for-mappings][vim-freekeys (shows free keys available for mappings)]]
-    - [[#pgmntvim-utilities-for-colorscheme-creating-specifically-detecting-syntax-group-under-cursor][pgmnt.vim (utilities for colorscheme creating, specifically detecting syntax group under cursor)]]
+    - [[#syntaxattrvim-detection-of-syntax-group-under-cursor][SyntaxAttr.vim (detection of syntax group under cursor)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -53,6 +53,7 @@
   - [[#vim-modusline-color-settings][vim-modusline color settings]]
   - [[#vim-convert-color-to-keybinding][vim-convert-color-to keybinding]]
   - [[#lightline-gitdiff-indicators][lightline-gitdiff indicators]]
+  - [[#syntaxattrvim-keybinding][SyntaxAttr.vim keybinding]]
 - [[#colorscheme-settings][Colorscheme settings]]
 - [[#settings-for-gvim][Settings for Gvim]]
 - [[#various-settings][Various settings]]
@@ -223,10 +224,10 @@ I wanted a vim equivalent of the emacs package [[https://github.com/Fuco1/free-k
 #+BEGIN_SRC org
 Plug 'lacygoill/vim-freekeys'
 #+END_SRC
-*** pgmnt.vim (utilities for colorscheme creating, specifically detecting syntax group under cursor)
-I've been thinking for a while that it would be nice to be able to see what syntax group a string under the cursor uses (something akin to emacs's ~decribe-face~). [[https://github.com/cocopon/pgmnt.vim][This plugin]] offers the command ~:PgmntDevInspect~, which prints not only the syntax group but also any other groups it might inherit from. Only downside is that it also includes some other functionalities that I won't use (and I generally don't like using plugins where I'll use only a subset of the functionality), but trying to isolate the code of the ~PgmntDevInspect~ command would be more trouble than its worth, so I'm going to make an exception here.
+*** SyntaxAttr.vim (detection of syntax group under cursor)
+I've been thinking for a while that it would be nice to be able to see what syntax group a string under the cursor uses (something akin to emacs's ~decribe-face~).[[https://github.com/inkarkat/SyntaxAttr.vim][This plugin]] does this.
 #+BEGIN_SRC org
-Plug 'cocopon/pgmnt.vim'
+Plug 'inkarkat/SyntaxAttr.vim'
 #+END_SRC
 ** Initialize the plugin system
 #+BEGIN_SRC org
@@ -338,6 +339,10 @@ The default indicators are ~A:~ for added, ~D:~ for removed, and ~M:~ for modifi
 let g:lightline#gitdiff#indicator_added = '+'
 let g:lightline#gitdiff#indicator_deleted = '-'
 let g:lightline#gitdiff#indicator_modified = '≠'
+#+END_SRC
+** SyntaxAttr.vim keybinding
+#+BEGIN_SRC org
+nnoremap <silent> <leader>a :<c-u>call SyntaxAttr#SyntaxAttr()<cr>
 #+END_SRC
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).
