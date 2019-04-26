@@ -71,6 +71,8 @@ Plug 'axvr/org.vim'
 
 Plug 'lacygoill/vim-freekeys'
 
+Plug 'cocopon/pgmnt.vim'
+
 " Initialize plugin system
 call plug#end()
 endif
