@@ -478,6 +478,12 @@ if has('gui_running')
 nnoremap <silent> <c-s> :update<CR>
 endif
 #+END_SRC
+Unmap ~<Ctrl-X>~ in visual mode only on Windows: I found out that there is a function in vim to increment numbers with ~<Ctrl-A>~ and decrement numbers with ~<Ctrl-X>~ on normal and visual modes (see ~:h CTRL-A~, ~:h v_CTRL_A~, ~:h CTRL_X~, ~:h v_CTRL_X~, and also [[https://medium.com/usevim/visual-mode-increment-cce60c8743dc][here]] and [[https://www.networkworld.com/article/2968352/tricks-to-play-with-vim.html][here]]).There is also a function that can create incrementing and decrementing sequences (see ~:h v_g_CTRL_A~ and ~:h v_g_CTRL_X~) However on Windows, ~<Ctrl-X>~ on visual mode cuts the text instead. ~:h v_CTRL_X~ informs that using ~silent! vunmap <C-X>~ disables this behavior and restores the decrementing behavior in its place.
+#+BEGIN_SRC org
+if has("win32")
+silent! vunmap <C-X>
+endif
+#+END_SRC
 ** Netrw
 Add relative line numbers to netrw: The below setting will help me navigate netrw buffers more easily, by showing relative line numbers.
 #+BEGIN_SRC org

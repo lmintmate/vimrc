@@ -224,6 +224,10 @@ if has('gui_running')
 nnoremap <silent> <c-s> :update<CR>
 endif
 
+if has("win32")
+silent! vunmap <C-X>
+endif
+
 let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
 
 set incsearch " display search matches as characters are entered
