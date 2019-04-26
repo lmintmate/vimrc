@@ -151,14 +151,17 @@ if has('termguicolors')
 set termguicolors
 endif
 
+autocmd ColorScheme slate
+        \ hi! link PreProc Identifier
+
 if has('gui_running') || has('termguicolors')
 try
     colorscheme blue-mood
 catch
-    colorscheme torte
+    colorscheme slate
 endtry
 else
-colorscheme torte
+colorscheme slate
 endif
 
 autocmd FileType markdown hi link markdownError NONE
