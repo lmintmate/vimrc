@@ -152,7 +152,11 @@ set termguicolors
 endif
 
 if has('gui_running') || has('termguicolors')
-colorscheme blue-mood
+try
+    colorscheme blue-mood
+catch
+    colorscheme torte
+endtry
 else
 colorscheme torte
 endif

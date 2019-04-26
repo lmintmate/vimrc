@@ -346,10 +346,14 @@ if has('termguicolors')
 set termguicolors
 endif
 #+END_SRC
-Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme,blue-mood]]. I check first if the gui is running or the termguicolors feature exists. If any one of those two things is true, then I set my colorscheme to blue-mood. If none of these is true (e.g. if I happen to use terminal vim with a version below 7.4.1799 - where iirc the ~termguicolors~ option was first added) then the builtin colorscheme torte is used.
+Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme, blue-mood]]. I check first if the gui is running or the ~termguicolors~ feature exists. If any one of those two things is true, then I set my colorscheme to blue-mood, using a ~try/catch~ block with the builtin colorscheme torte as fallback so that it won't error out in case blue-mood isn't present (which might happen since I install it manually). If none of these is true (e.g. if I happen to use terminal vim with a version below 7.4.1799 - where iirc the ~termguicolors~ option was first added) then the builtin colorscheme torte is used.
 #+BEGIN_SRC org
 if has('gui_running') || has('termguicolors')
-colorscheme blue-mood
+try
+    colorscheme blue-mood
+catch
+    colorscheme torte
+endtry
 else
 colorscheme torte
 endif
