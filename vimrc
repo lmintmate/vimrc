@@ -100,11 +100,13 @@ let g:SignatureMarkTextHL = "Title"
 
 let g:highlighturl_guifg ='#00ffff'
 
+if exists('g:loaded_highlighturl')
 let g:highlighturl_enable = 0
 	augroup highlighturl-filetype
 	  autocmd!
 	  autocmd FileType text call highlighturl#enable_local()
 augroup END
+endif
 
 autocmd VimEnter * call s:showmotion_bindings()
 function! s:showmotion_bindings() abort

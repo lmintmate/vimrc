@@ -278,13 +278,15 @@ The default one is darker than I wish it to be.
 let g:highlighturl_guifg ='#00ffff'
 #+END_SRC
 *** Enable the plugin only on text files
-The other filetypes where urls are usually encountered (e.g. markdown) manage the url highlighting by themselves, so no need to enable it there (code adapted from the example in the doc file).
+The other filetypes where urls are usually encountered (e.g. markdown) manage the url highlighting by themselves, so no need to enable it there (code adapted from the example in the doc file). I'm enabling this conditionally so that it won't show an error if the plugin isn't present.
 #+BEGIN_SRC org
+if exists('g:loaded_highlighturl')
 let g:highlighturl_enable = 0
 	augroup highlighturl-filetype
 	  autocmd!
 	  autocmd FileType text call highlighturl#enable_local()
 augroup END
+endif
 #+END_SRC
 ** Bindings of ShowMotion plugin
 Make them conditional, so that they will work in the default manner if the plugin isn't present.
