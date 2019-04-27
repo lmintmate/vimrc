@@ -106,6 +106,9 @@ let g:highlighturl_enable = 0
 	  autocmd FileType text call highlighturl#enable_local()
 augroup END
 
+autocmd VimEnter * call s:showmotion_bindings()
+function! s:showmotion_bindings() abort
+if exists('g:loaded_showmotion')
 "*** Only highlights motions corresponding to the one you typed
 nmap w <Plug>(show-motion-w)
 nmap W <Plug>(show-motion-W)
@@ -115,14 +118,15 @@ nmap e <Plug>(show-motion-e)
 nmap E <Plug>(show-motion-E)
 nmap ge <Plug>(show-motion-ge)
 nmap gE <Plug>(show-motion-gE)
-
-"Show motion for chars:  
+"Show motion for chars:
 nmap f <Plug>(show-motion-f)
 nmap t <Plug>(show-motion-t)
 nmap F <Plug>(show-motion-F)
 nmap T <Plug>(show-motion-T)
 nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
+endif
+endfunction
 
 autocmd ColorScheme *
         \ hi User1 guifg=#000000 guibg=#7fff00 |
