@@ -15,6 +15,7 @@
   - [[#syntax-on][Syntax on]]
   - [[#filetype-plugin-indent-on][filetype plugin indent on]]
   - [[#map-leader-key][Map leader key]]
+  - [[#augroup-for-the-autocmds][Augroup for the autocmds]]
 - [[#vim-plug-requires-git][Vim plug (requires git)]]
   - [[#autoinstall-vim-plug-unix-only][Autoinstall vim-plug (Unix-only)]]
   - [[#defining-the-directory-for-installed-plugins][Defining the directory for installed plugins]]
@@ -92,6 +93,13 @@ filetype plugin indent on
 I decided to map leader to space after all because the default \ key is on a different place in one of the laptops I use, and I don't use space in normal mode.
 #+BEGIN_SRC org
 let mapleader="\<Space>"
+#+END_SRC
+** Augroup for the autocmds
+See [[https://gist.github.com/romainl/6e4c15dfc4885cb4bd64688a71aa7063][Dealing with autocommands · GitHub]] and [[https://www.reddit.com/r/vim/comments/4p4ogb/augroup_autocmd_need_some_clarification/d4i14it?utm_source=share&utm_medium=web2x][this r/vim post]]. To be honest, I wish the autocmds didn't have the tendency to be run again regardless of whether they were ran already, so that any sort of augroup wouldn't be necessary (as the rough equivalent on emacs, [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html][Hooks]], doesn't need anything of the sort), and I don't really source my vimrc (I tend to close and re-open Vim instead), but might as well put this here - it won't do any harm. Note to self: Not sure if I should add the autocmd used for auto-installing vim-plug to an augroup - it's the only one I left out of this augroup. Also the autocmd provided for vim-highlighturl was in its own augroup already, as this is how its author had written it).
+#+BEGIN_SRC org
+augroup myautocmds
+    autocmd!
+augroup END
 #+END_SRC
 * Vim plug (requires git)
   Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier. Vim-plug however requires git, and I generally don't have that installed on my Windows machines, which is why I wrapped this whole section in a conditional that checks if the system has the git executable available (this way I'll account for any Windows machines with git or Unix machines without git I might encounter in the future). On my git-less Windows machines, I'll use Vim 8's [[https://shapeshed.com/vim-packages/][native package loading]], and manually place the plugins into the correct folder. It might not be the most convenient way, but at least it doesn't require git, _and_ I'll get to use my plugins.
@@ -291,7 +299,7 @@ endif
 ** Bindings of ShowMotion plugin
 Make them conditional, so that they will work in the default manner if the plugin isn't present.
 #+BEGIN_SRC org
-autocmd VimEnter * call s:showmotion_bindings()
+autocmd myautocmds VimEnter * call s:showmotion_bindings()
 function! s:showmotion_bindings() abort
 if exists('g:loaded_showmotion')
 "*** Only highlights motions corresponding to the one you typed
@@ -318,12 +326,12 @@ In regards to the default colors used by modusline, I didn't want to use all of 
 At first I thought I could only use the colors defined by my colorscheme, and since it didn't define much stuff with a solid bg, my statusline didn't look as good as it could have. But then I found out about the existence of a number of custom highlight parameters reserved for the user, namely ~hl-User1..9~, via [[https://kadekillary.work/post/statusline-vim/][this blogpost]] , so I thought that I could use those to highlight my statusline any way I wanted. When I first tried to set the highlights just by themselves however, they were being cleared by the colorscheme, no matter if I set it before or after the vim-modusline setting. I looked the problem up, and [[https://vi.stackexchange.com/a/3356][found out]] that I have to put these highlights in an autocmd to be executed with the colorscheme if I want to prevent them being cleared.\\
 Thus below I first set the User1..3 highlights with an autocmd and then override the modusline defaults for insert, visual and replace modes. The new colors for these ones are drawn from the lightline theme I created. I also had already replaced modusline's highlight of terminal mode with the one that is default in my colorscheme. I load this customization conditionally so that it won't show an error if the plugin is absent.
 #+BEGIN_SRC org
-autocmd ColorScheme *
+autocmd myautocmds ColorScheme *
         \ hi User1 guifg=#000000 guibg=#7fff00 |
         \ hi User2 guifg=#000000 guibg=#ffd700 |
         \ hi User3 guifg=#000000 guibg=#ff6347
 
-autocmd VimEnter * call s:customize_modusline()
+autocmd myautocmds VimEnter * call s:customize_modusline()
 function! s:customize_modusline() abort
 if exists('g:loaded_modusline')
   " do your customization here, inside this function
@@ -362,7 +370,7 @@ endif
 #+END_SRC
 Change color of PreProc for the builtin slate theme: The builtin theme slate is the one I'll use when blue-mood isn't available, but I don't like the default color of PreProc, so I link it to Identifier instead.
 #+BEGIN_SRC org
-autocmd ColorScheme slate
+autocmd myautocmds ColorScheme slate
         \ hi! link PreProc Identifier
 #+END_SRC
 Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme, blue-mood]]. I check first if the gui is running or the ~termguicolors~ feature exists. If any one of those two things is true, then I set my colorscheme to blue-mood, using a ~try/catch~ block with the builtin colorscheme slate as fallback so that it won't error out in case blue-mood isn't present (which might happen since I install it manually). If none of these is true (e.g. if I happen to use terminal vim with a version below 7.4.1799 - where iirc the ~termguicolors~ option was first added) then the builtin colorscheme slate is used.
@@ -379,7 +387,7 @@ endif
 #+END_SRC
 This disables the annoying red on things like underscores in markdown mode (from [[https://github.com/tpope/vim-markdown/issues/79][Make highlighting of markdownError optional · Issue #79 · tpope/vim-markdown]])
 #+BEGIN_SRC org
-autocmd FileType markdown hi link markdownError NONE
+autocmd myautocmds FileType markdown hi link markdownError NONE
 #+END_SRC
 * Settings for Gvim
 Font for Gvim: My preferred font is DejaVu Sans Mono, but that might not be installed on some Windows systems, so I'm using Consolas as a fallback.

@@ -6,6 +6,10 @@ filetype plugin indent on
 
 let mapleader="\<Space>"
 
+augroup myautocmds
+    autocmd!
+augroup END
+
 if executable('git')
 
 if has("unix")
@@ -108,7 +112,7 @@ let g:highlighturl_enable = 0
 augroup END
 endif
 
-autocmd VimEnter * call s:showmotion_bindings()
+autocmd myautocmds VimEnter * call s:showmotion_bindings()
 function! s:showmotion_bindings() abort
 if exists('g:loaded_showmotion')
 "*** Only highlights motions corresponding to the one you typed
@@ -130,12 +134,12 @@ nmap , <Plug>(show-motion-,)
 endif
 endfunction
 
-autocmd ColorScheme *
+autocmd myautocmds ColorScheme *
         \ hi User1 guifg=#000000 guibg=#7fff00 |
         \ hi User2 guifg=#000000 guibg=#ffd700 |
         \ hi User3 guifg=#000000 guibg=#ff6347
 
-autocmd VimEnter * call s:customize_modusline()
+autocmd myautocmds VimEnter * call s:customize_modusline()
 function! s:customize_modusline() abort
 if exists('g:loaded_modusline')
   " do your customization here, inside this function
@@ -161,7 +165,7 @@ if has('termguicolors')
 set termguicolors
 endif
 
-autocmd ColorScheme slate
+autocmd myautocmds ColorScheme slate
         \ hi! link PreProc Identifier
 
 if has('gui_running') || has('termguicolors')
@@ -174,7 +178,7 @@ else
 colorscheme slate
 endif
 
-autocmd FileType markdown hi link markdownError NONE
+autocmd myautocmds FileType markdown hi link markdownError NONE
 
 if has("win32")
     set guifont=DejaVu_Sans_Mono:h14,Consolas:h14
