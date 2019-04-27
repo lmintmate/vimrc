@@ -316,7 +316,7 @@ endfunction
 ** vim-modusline color settings
 In regards to the default colors used by modusline, I didn't want to use all of the defaults as they were, as, for example, the defined by modusline color of the terminal mode overrode StatusLineTerm. I initially couldn't override this however, so [[https://github.com/sunaku/vim-modusline/issues/1][the author of the plugin gave me an autocommand to use]], and this worked.\\
 At first I thought I could only use the colors defined by my colorscheme, and since it didn't define much stuff with a solid bg, my statusline didn't look as good as it could have. But then I found out about the existence of a number of custom highlight parameters reserved for the user, namely ~hl-User1..9~, via [[https://kadekillary.work/post/statusline-vim/][this blogpost]] , so I thought that I could use those to highlight my statusline any way I wanted. When I first tried to set the highlights just by themselves however, they were being cleared by the colorscheme, no matter if I set it before or after the vim-modusline setting. I looked the problem up, and [[https://vi.stackexchange.com/a/3356][found out]] that I have to put these highlights in an autocmd to be executed with the colorscheme if I want to prevent them being cleared.\\
-Thus below I first set the User1..3 highlights with an autocmd and then override the modusline defaults for insert, visual and replace modes. The new colors for these ones are drawn from the lightline theme I created. I also had already replaced modusline's highlight of terminal mode with the one that is default in my colorscheme.
+Thus below I first set the User1..3 highlights with an autocmd and then override the modusline defaults for insert, visual and replace modes. The new colors for these ones are drawn from the lightline theme I created. I also had already replaced modusline's highlight of terminal mode with the one that is default in my colorscheme. I load this customization conditionally so that it won't show an error if the plugin is absent.
 #+BEGIN_SRC org
 autocmd ColorScheme *
         \ hi User1 guifg=#000000 guibg=#7fff00 |
@@ -325,6 +325,7 @@ autocmd ColorScheme *
 
 autocmd VimEnter * call s:customize_modusline()
 function! s:customize_modusline() abort
+if exists('g:loaded_modusline')
   " do your customization here, inside this function
   let g:modusline_colors['i'] = '%#User1#'
   let g:modusline_colors['v'] = '%#User2#'
@@ -332,7 +333,8 @@ function! s:customize_modusline() abort
   let g:modusline_colors["\<C-V>"] = '%#User2#'
   let g:modusline_colors['R'] = '%#User3#'
   let g:modusline_colors['Rv'] = '%#User3#'
-  let g:modusline_colors['t'] = '%#StatusLineTerm#'  
+  let g:modusline_colors['t'] = '%#StatusLineTerm#'
+endif  
 endfunction
 #+END_SRC
 ** vim-convert-color-to keybinding

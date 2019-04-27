@@ -137,6 +137,7 @@ autocmd ColorScheme *
 
 autocmd VimEnter * call s:customize_modusline()
 function! s:customize_modusline() abort
+if exists('g:loaded_modusline')
   " do your customization here, inside this function
   let g:modusline_colors['i'] = '%#User1#'
   let g:modusline_colors['v'] = '%#User2#'
@@ -144,7 +145,8 @@ function! s:customize_modusline() abort
   let g:modusline_colors["\<C-V>"] = '%#User2#'
   let g:modusline_colors['R'] = '%#User3#'
   let g:modusline_colors['Rv'] = '%#User3#'
-  let g:modusline_colors['t'] = '%#StatusLineTerm#'  
+  let g:modusline_colors['t'] = '%#StatusLineTerm#'
+endif  
 endfunction
 
 nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
