@@ -373,10 +373,10 @@ This disables the annoying red on things like underscores in markdown mode (from
 autocmd FileType markdown hi link markdownError NONE
 #+END_SRC
 * Settings for Gvim
-Font for Gvim - DejaVu Sans Mono on Unix, Consolas on Windows (because DejaVu might not be installed there).
+Font for Gvim: My preferred font is DejaVu Sans Mono, but that might not be installed on some Windows systems, so I'm using Consolas as a fallback.
 #+BEGIN_SRC org
 if has("win32")
-    set guifont=Consolas:h14
+    set guifont=DejaVu_Sans_Mono:h14,Consolas:h14
 else
     set guifont=DejaVu\ Sans\ Mono\ 14
 endif

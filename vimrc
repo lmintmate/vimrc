@@ -169,7 +169,7 @@ endif
 autocmd FileType markdown hi link markdownError NONE
 
 if has("win32")
-    set guifont=Consolas:h14
+    set guifont=DejaVu_Sans_Mono:h14,Consolas:h14
 else
     set guifont=DejaVu\ Sans\ Mono\ 14
 endif
