@@ -287,7 +287,7 @@ let g:highlighturl_enable = 0
 augroup END
 #+END_SRC
 ** Bindings of ShowMotion plugin
-Make them conditional, so that they will work in the default makker if the plugin isn't present.
+Make them conditional, so that they will work in the default manner if the plugin isn't present.
 #+BEGIN_SRC org
 autocmd VimEnter * call s:showmotion_bindings()
 function! s:showmotion_bindings() abort
