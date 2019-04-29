@@ -61,6 +61,7 @@
   - [[#keybindings][Keybindings]]
   - [[#netrw][Netrw]]
   - [[#autocmd-for-help-buffers][Autocmd for help buffers]]
+  - [[#difforig-command][DiffOrig command]]
 - [[#search-settings][Search settings]]
 - [[#custom-statusline][Custom statusline]]
 - [[#nationality-and-keymap-settings][Nationality and keymap settings]]
@@ -536,6 +537,14 @@ function! s:helptab()
   endif
 endfunction
 autocmd myautocmds BufWinEnter *.txt call s:helptab()
+#+END_SRC
+** DiffOrig command
+Found from the ~defaults.vim~ file. This provides a command that uses vimdiff to find the differences between how a file was originally loaded and its current version after changes were made - useful to see what changes were made before saving a file.
+#+BEGIN_SRC org
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
 #+END_SRC
 * Search settings
 Display search matches as characters are entered

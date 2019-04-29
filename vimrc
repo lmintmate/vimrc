@@ -261,6 +261,11 @@ function! s:helptab()
 endfunction
 autocmd myautocmds BufWinEnter *.txt call s:helptab()
 
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
 set incsearch " display search matches as characters are entered
 
 set hlsearch " highlight matches
