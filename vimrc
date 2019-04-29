@@ -249,6 +249,8 @@ if has("win32")
 silent! vunmap <C-X>
 endif
 
+set nrformats+=alpha
+
 let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
 
 function! s:helptab()

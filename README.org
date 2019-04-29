@@ -516,6 +516,10 @@ if has("win32")
 silent! vunmap <C-X>
 endif
 #+END_SRC
+Not a keybinding. but related: Add single alphanumeric characters to the list of stuff that can be incremented or decremented with ~Ctrl-A~ and ~Ctrl-X~. This is useful for things like lists with a letter index e.g. a), b), etc.
+#+BEGIN_SRC org
+set nrformats+=alpha
+#+END_SRC	
 ** Netrw
 Add relative line numbers to netrw: The below setting will help me navigate netrw buffers more easily, by showing relative line numbers.
 #+BEGIN_SRC org
