@@ -251,6 +251,14 @@ endif
 
 let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
 
+function! s:helptab()
+  if &buftype == 'help'
+    silent! wincmd T
+    nnoremap <silent> <buffer> q :helpclose<cr>
+  endif
+endfunction
+autocmd myautocmds BufWinEnter *.txt call s:helptab()
+
 set incsearch " display search matches as characters are entered
 
 set hlsearch " highlight matches

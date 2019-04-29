@@ -60,6 +60,7 @@
 - [[#various-settings][Various settings]]
   - [[#keybindings][Keybindings]]
   - [[#netrw][Netrw]]
+  - [[#autocmd-for-help-buffers][Autocmd for help buffers]]
 - [[#search-settings][Search settings]]
 - [[#custom-statusline][Custom statusline]]
 - [[#nationality-and-keymap-settings][Nationality and keymap settings]]
@@ -521,6 +522,17 @@ Add relative line numbers to netrw: The below setting will help me navigate netr
 let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
 #+END_SRC
 A note in regards to netrw: My mileage with it varies. On my Linux machine it exhibits no bugs whatsoever, so I'm fine with using it whenever I need to navigate the filesystem there. On my Windows machine however it exhibits enough bugs to annoy me and make me look for an alternative file browser. In this case (that is whenever netrw acts all buggy), [[https://github.com/cocopon/vaffle.vim][Vaffle]] is the solution that works the best for me. In short, I occasionally use the Vaffle plugin but only on those cases where netrw exhibits enough bugs to make me not want to use it.
+** Autocmd for help buffers
+This autocmd, adapted from [[https://github.com/junegunn/dotfiles/blob/5485496191a5413b9bf073ea0660ed97ccefc53d/vimrc#L1765][a snippet from junegunn's dotfiles]], found via [[https://github.com/arzg/vim-tabhelp][this plugin]], detects when a help buffer opens and shows it in a new tab (so that the previous window layout won't be disturbed) and enables using just q to exit from it. The original autocmd used ~BufEnter~ instead of ~BufWinEnter~ but that caused instances of SkyBison called from help buffers to error out with ~E16~, saying ~Invalid range: 2wincmd w~. Looking at SkyBison's source code, I saw that [[https://github.com/paradigm/SkyBison/blob/1bc37a87a2517c57d9421e06a6dbf974b73d9238/plugin/skybison.vim#L176][SkyBison briefly revisited the open buffer using a wincmd]], and this apparently counted as a ~BufEnter~ event which caused 2 wincmd commands to be executed. I thus changed the event to ~BufWinEnter~ which still enables this autocmd but also doesn't error out SkyBison.
+#+BEGIN_SRC org
+function! s:helptab()
+  if &buftype == 'help'
+    silent! wincmd T
+    nnoremap <silent> <buffer> q :helpclose<cr>
+  endif
+endfunction
+autocmd myautocmds BufWinEnter *.txt call s:helptab()
+#+END_SRC
 * Search settings
 Display search matches as characters are entered
 #+BEGIN_SRC org
