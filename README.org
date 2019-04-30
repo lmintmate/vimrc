@@ -484,6 +484,10 @@ Enable mouse in the terminal as well. The mouse is already enabled on the gui by
 #+begin_src org
 set mouse=a
 #+end_src
+Prevent mouse from showing popup menu on right click. Also enables shift + left mouse button to search word under cursor (basically the reason I changed this setting). This seems to be the default on Linux, but this isn't the case on Windows.
+#+begin_src org
+set mousemodel=extend
+#+end_src
 ** Keybindings
 Keymap to have enter add a new line without entering insert mode - good for spacing out text. I used to have it as ~nnoremap <CR>o<Esc>k~, but it was a bit jarring for some reason. I realised a while after that Enter in the conventional text editors does not in fact add a line below, as I thought, but rather a line /above/ from where the cursor is, so I corrected my keybinding accordingly.
 #+begin_src org

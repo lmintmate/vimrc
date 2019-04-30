@@ -229,6 +229,8 @@ set backspace=indent,eol,start
 
 set mouse=a
 
+set mousemodel=extend
+
 nnoremap <CR> O<Esc>j
 
 nnoremap x "_x
