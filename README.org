@@ -652,5 +652,3 @@ map γγ gg
 map αε ae
 #+end_src
 Tip for Greek spell-checking: write in the file you want to spellcheck ~:setlocal spell spelllang=el~, and it will download all necessary files and do the spellchecking by itself (tip from [[https://forum.ubuntu-gr.org/viewtopic.php?f=23&t=18008][Ubuntu-gr Forum - vim και ελληνικός ορθογράφος]])
-
-#  LocalWords:  recognise colorscheme
