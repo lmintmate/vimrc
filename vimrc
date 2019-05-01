@@ -77,6 +77,8 @@ Plug 'lacygoill/vim-freekeys'
 
 Plug 'inkarkat/SyntaxAttr.vim'
 
+Plug 'will133/vim-dirdiff'
+
 " Initialize plugin system
 call plug#end()
 endif
