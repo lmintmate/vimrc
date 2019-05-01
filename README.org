@@ -1,5 +1,5 @@
-#+PROPERTY: header-args :tangle vimrc
-#+TITLE: My literate Vim configuration
+#+property: header-args :tangle vimrc
+#+title: My literate Vim configuration
 # Note: export with org-babel-tangle (C-c C-v t)
 # More info at: https://org-babel.readthedocs.io/en/latest/header-args/#tangle
 
@@ -73,7 +73,7 @@ A while ago, I thought I'd try out Vim, to see what the fuss was about. Turns ou
 ** How the magic is done
 I put in the beginning of this org file the string
 #+begin_example
-#+PROPERTY: header-args :tangle vimrc
+#+property: header-args :tangle vimrc
 #+end_example
 which tells the src blocks to get tangled (= exported) to a file called vimrc, so that vim will be able to see it. The tangling is triggered by the command ~org-babel-tangle~, which has the shortcut ~C-c C-v t~. During my testing however I discovered that the global property doesn't work if a specific language isn't specified in the code blocks (tangling though worked when I had ~:tangle~ on every single source block, but that wasn't very practical). And since vimscript isn't supported by babel (though it could be, if someone wrote a plugin for that - but that won't be me, as I don't know enough emacs lisp nor vimscript for that), I decided to use org (which is supported) as a placeholder.
 * Preliminaries
