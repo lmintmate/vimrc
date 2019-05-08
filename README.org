@@ -75,31 +75,32 @@ I put in the beginning of this org file the string
 #+begin_example
 #+property: header-args :tangle vimrc
 #+end_example
-which tells the src blocks to get tangled (= exported) to a file called vimrc, so that vim will be able to see it. The tangling is triggered by the command ~org-babel-tangle~, which has the shortcut ~C-c C-v t~. During my testing however I discovered that the global property doesn't work if a specific language isn't specified in the code blocks (tangling though worked when I had ~:tangle~ on every single source block, but that wasn't very practical). And since vimscript isn't supported by babel (though it could be, if someone wrote a plugin for that - but that won't be me, as I don't know enough emacs lisp nor vimscript for that), I decided to use org (which is supported) as a placeholder.
+which tells the src blocks to get tangled (= exported) to a file called vimrc, so that vim will be able to see it. The tangling is triggered by the command ~org-babel-tangle~, which has the shortcut ~C-c C-v t~. During my testing however I discovered that the global property doesn't work if a specific language isn't specified in the code blocks (tangling though worked when I had ~:tangle~ on every single source block, but that wasn't very practical).\\
+Note that vimscript doesn't seem to be supported for syntax hightlighting in emacs itself, unless  the installable from MELPA vimrc-mode is referenced as a language for the source blocks with ~#+begin_src vimrc~, since apparently org mode provides font lock of source blocks for all major modes (see [[https://emacs.stackexchange.com/a/50362][here]]). This isn't syntax highlighted by github rendering however; on the other hand ~#+begin_src vim~ is. So, in order to have syntax highlighting of the code blocks in github, I have to use ~#+begin_src vim~, with the downside that the source code blocks will continue to lack syntax highlighting in emacs itself.
 * Preliminaries
 ** Nocompatible
 One thing that vim users are told to put in their vimrc files is ~set nocompatible~ in order to kill pesky vi behavior. However, it turns out that this particular line is unnecessary, as the help file informs that the compatible option is turned off if a vimrc file is found. I keep it in my file though, albeit commented out, in order to remember this fact.
-#+begin_src org
+#+begin_src vim
 " set nocompatible
 #+end_src
 ** Syntax on
 Here I enable the syntax because while this might happen automatically on Linux, this isn't the case on one of my Windows machines.
-#+begin_src org
+#+begin_src vim
 syntax on
 #+end_src
 ** filetype plugin indent on
 This might be this way by default on Linux, but this isn't the case with one of my Windows machines.
-#+begin_src org
+#+begin_src vim
 filetype plugin indent on
 #+end_src
 ** Map leader key
 I decided to map leader to space after all because the default \ key is on a different place in one of the laptops I use, and I don't use space in normal mode.
-#+begin_src org
+#+begin_src vim
 let mapleader="\<Space>"
 #+end_src
 ** Augroup for the autocmds
 See [[https://gist.github.com/romainl/6e4c15dfc4885cb4bd64688a71aa7063][Dealing with autocommands · GitHub]] and [[https://www.reddit.com/r/vim/comments/4p4ogb/augroup_autocmd_need_some_clarification/d4i14it?utm_source=share&utm_medium=web2x][this r/vim post]]. To be honest, I wish the autocmds didn't have the tendency to be run again regardless of whether they were ran already, so that any sort of augroup wouldn't be necessary (as the rough equivalent on emacs, [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html][Hooks]], doesn't need anything of the sort), and I don't really source my vimrc (I tend to close and re-open Vim instead), but might as well put this here - it won't do any harm. Note to self: Not sure if I should add the autocmd used for auto-installing vim-plug to an augroup - it's the only one I left out of this augroup. Also the autocmd provided for vim-highlighturl was in its own augroup already, as this is how its author had written it).
-#+begin_src org
+#+begin_src vim
 augroup myautocmds
     autocmd!
 augroup END
@@ -108,7 +109,7 @@ augroup END
   Initially, I started out without plugins. But I installed some after a while, to make my life with vim easier. Vim-plug however requires git, and I generally don't have that installed on my Windows machines, which is why I wrapped this whole section in a conditional that checks if the system has the git executable available (this way I'll account for any Windows machines with git or Unix machines without git I might encounter in the future). On my git-less Windows machines, I'll use Vim 8's [[https://shapeshed.com/vim-packages/][native package loading]], and manually place the plugins into the correct folder. It might not be the most convenient way, but at least it doesn't require git, _and_ I'll get to use my plugins.
 ** Autoinstall vim-plug (Unix-only)
 From [[https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation][tips · junegunn/vim-plug Wiki · GitHub]]. This part probably requires a Unix system, since it uses curl, hence the conditional that checks if the system is Unix wrapped around it. In case I'm on a Windows system with git, I'll probably download and place the file in the correct folder manually.
-#+begin_src org
+#+begin_src vim
 if executable('git')
 
 if has("unix")
@@ -121,7 +122,7 @@ endif
 #+end_src
 ** Defining the directory for installed plugins
 Features a conditional for using different directories on Unix and Windows with git systems (from [[https://vi.stackexchange.com/a/15227][https://vi.stackexchange.com/a/15227]]).
-#+begin_src org
+#+begin_src vim
 if has('win32')
     let $MYPLUGDIRECTORY = "~/vimfiles/plugins"
 else
@@ -133,7 +134,7 @@ call plug#begin($MYPLUGDIRECTORY)
 ** Declare the list of plugins
 *** vim-textobj-entire
 This is a custom textobject which allows me to easily select the entire buffer, most useful for when I want to paste something over it (because it turns out I can copy the entire buffer with ~:%y~). It provides the text object ae for the entire buffer, ie for the entire buffer except leading and trailing empty lines.
-#+begin_src org
+#+begin_src vim
 " Declare the list of plugins.
 " dependency of vim-textobj-entire
 Plug 'kana/vim-textobj-user'
@@ -142,110 +143,110 @@ Plug 'kana/vim-textobj-entire'
 #+end_src
 *** MRU (Viewing recent files)
 I wanted to be able to view the files I had recently opened easily, and Ctrl-P didn't work as it doesn't recognise non-latin characters. I'm using thus MRU which is a good simple plugin for that purpose. Initially I was missing a feature to remove items from the recent files list without resorting to editing the file it uses to store the list by hand, but then found lilydjwg's fork, which implemented this functionality. It was missing though some of the changes the creator yegappan had made upstream, so I made my own fork which combines the two, and which is the one I use.
-#+begin_src org
+#+begin_src vim
 " simple plugin to view list of recently opened files.
 Plug 'lmintmate/MRU'
 #+end_src
 *** vim-searchindex (Show number of search results)
 By default vim doesn't show the number of search results. [[https://github.com/google/vim-searchindex][This plugin]] fixes that.
-#+begin_src org
+#+begin_src vim
 " shows number of search results
 Plug 'google/vim-searchindex'
 #+end_src
 *** vim-cool (disable search highlighting)
 Another annoying default behavior of Vim is that it keeps the highlighting of the search results even when I finished with the search. [[https://github.com/romainl/vim-cool][This plugin]] disables the search highlighting when any button is pressed.
-#+begin_src org
+#+begin_src vim
 " disables search highlighting when you are done searching and re-enables it when you search again
 Plug 'romainl/vim-cool'
 #+end_src
 *** SkyBison (Autocomplete system for the cmdline)
 Another thing I missed from emacs was a completion framework. [[https://github.com/paradigm/SkyBison][SkyBison]] fixes this. I use it for completion of general commands, help topics, finding files, and buffers.
-#+begin_src org
+#+begin_src vim
 " Autocomplete system for the cmdline
 Plug 'paradigm/SkyBison'
 #+end_src
 *** vim-highlightedyank (Makes yanked region apparent)
 [[https://github.com/machakann/vim-highlightedyank][This plugin]] briefly highlights the text that's being yanked. It has helped me quite a bit because I often miscalculate the area I am to yank.
-#+begin_src org
+#+begin_src vim
 " Makes the yanked region apparent
 Plug 'machakann/vim-highlightedyank'
 #+end_src
 *** vim-signature (display marks)
 [[https://github.com/kshenoy/vim-signature][This plugin]] displays the marks created by the user on the signs column, which is good for remembering which marks were created.
-#+begin_src org
+#+begin_src vim
 Plug 'kshenoy/vim-signature'
 #+end_src
 *** vim-highlighturl (highlights urls)
 [[https://github.com/itchyny/vim-highlighturl][This plugin]] does roughly the equivalent of emacs's goto-address-mode, that is it highlights urls (it doesn't make them clickable though, unlike emacs).
-#+begin_src org
+#+begin_src vim
 Plug 'itchyny/vim-highlighturl'
 #+end_src
 *** ShowMotion (highlight landing places of text motions)
 This plugin highlights the possible landing places of various text motions, thus giving some help on using these motions. I'm using my own fork because I changed the highlight colors to suit my colorscheme.
-#+begin_src org
+#+begin_src vim
 Plug 'lmintmate/ShowMotion'
 #+end_src
 *** vim-togglercursor (changes the shape of the cursor on the terminal)
 [[https://github.com/jszakmeister/vim-togglecursor][This plugin]] changes the shape of the cursor on the terminal for insert and replace modes, to a vertical and a horizontal line respectively (as opposed to being a block in all of them). A similar plugin is [[https://github.com/wincent/terminus][terminus]], but I preferred to use this one instead as this one only configures the shape of the cursor and nothing else, while the other one also modifies some other stuff that I don't care about (so why use that if I was going to use only one feature of it?).
-#+begin_src org
+#+begin_src vim
 Plug 'jszakmeister/vim-togglecursor'
 #+end_src
 *** vim-modusline (changes status line color according to mode)
 [[https://github.com/sunaku/vim-modusline][This plugin]] changes the color of the statusline according to the mode, using the hl highlight colors, which means that the colors depend on the used colorscheme. Since I am using a custom statusline, this is a good solution for me to get the statusline to change color without having to use a statusline plugin (e.g. lightline).
-#+begin_src org
+#+begin_src vim
 Plug 'sunaku/vim-modusline'
 #+end_src
 *** vim-markdown-folding (Fold markdown documents by section)
 [[https://github.com/masukomi/vim-markdown-folding][This plugin]] folds markdown documents by section, using the existing folding system. I load it only for the markdown files.
-#+begin_src org
+#+begin_src vim
 Plug 'masukomi/vim-markdown-folding', { 'for': 'markdown' }
 #+end_src
 *** vim-rename-file (Rename buffer and file from within vim)
 [[https://github.com/pbrisbin/vim-rename-file][This plugin]] allows for renaming a file from within said file, without having to close it and go to the filemanager.
-#+begin_src org
+#+begin_src vim
 Plug 'pbrisbin/vim-rename-file'
 #+end_src
 *** vim-convert-color-to (Convert color strings to different formats)
 [[https://github.com/amadeus/vim-convert-color-to][This plugin]] converts color strings between many different formats e.g. hsl to hex.
-#+begin_src org
+#+begin_src vim
 Plug 'amadeus/vim-convert-color-to'
 #+end_src
 *** lisper-vim (provides Lisp REPL functionality for vim)
 [[https://github.com/mattn/lisper-vim][This made by mattn plugin]] provides functions that can evaluate lisp code from within vim, which can thus help me have a nifty little [[https://en.wikipedia.org/wiki/Polish_notation][prefix notation]] calculator for when I don't feel like opening emacs for this. Most useful for me are the functions ~:LisperEvalLine~, which evaluates the line on which the cursor is and shows the result on the commandline at the bottom of the screen, and ~:LisperRepl~, which creates a REPL environment on the bottom of the screen. Said REPL can be exited by typing ~(exit)~. I use [[https://github.com/dahu/lisper-vim][the fork made by dahu, since it's 1 commit ahead]].
-#+begin_src org
+#+begin_src vim
 Plug 'dahu/lisper-vim'
 #+end_src
 *** vim-gitbranch (shows git branch on statusline)
 [[https://github.com/itchyny/vim-gitbranch][This plugin]] shows the current git branch on the statusline, and thus provides a quick way for me to see if a file is under version control, so that I'll be more careful manipulating it.
-#+begin_src org
+#+begin_src vim
 Plug 'itchyny/vim-gitbranch'
 #+end_src
 *** lightline-gitdiff (shows number of changes from last commit on statusline)
 [[https://github.com/niklaas/lightline-gitdiff/][This plugin]], which, despite its name, doesn't require lightline to use, shows the number of changes from the last commit on the statusline. I use it in combination with vim-gitbranch because that one only shows if a file is under version control and not whether I changed anything.
-#+begin_src org
+#+begin_src vim
 Plug 'niklaas/lightline-gitdiff'
 #+end_src
 *** org.vim (syntax highlighting and folding for org-mode files)
 I was tired of seeing the org-mode files be detected as conf and highlighted incorrectly by vim, so I tried finding a plugin that would provide syntax highlighting. The most popular by far is [[https://github.com/jceb/vim-orgmode][vim-orgmode]], but that implements a lot of additional stuff I don't want, plus it complained that an optional plugin I didn't want was missing every time. I tried next [[https://github.com/filipelbc/orgmode.vim][orgmode.vim]], but that one defined the highlight colors in the plugin itself, and thus made a lot of color choices I didn't like, and I would have to change a lot of settings (if I was even able to) to achieve a better look. Finally I found [[https://github.com/axvr/org.vim][this plugin]], which is pretty much what I wanted from an org-mode plugin for vim (after all, if I want something more advanced, I'll do it from emacs), and it also draws its colors from the used colorscheme. Only slight drawback is that some things are colored differently than what I would ideally like (e.g. headline levels 1, 2 and 3 have the same color), but that doesn't change the fact that I'm glad to have found this plugin. 
-#+begin_src org
+#+begin_src vim
 Plug 'axvr/org.vim'
 #+end_src
 *** vim-freekeys (shows free keys available for mappings)
 I wanted a vim equivalent of the emacs package [[https://github.com/Fuco1/free-keys][free-keys]]. I found it [[https://github.com/lacygoill/vim-freekeys][here]]. Only problem it had was that it errored out when the <Leader> wasn't defined, which was another reason I ended up setting mapleader.
-#+begin_src org
+#+begin_src vim
 Plug 'lacygoill/vim-freekeys'
 #+end_src
 *** SyntaxAttr.vim (detection of syntax group under cursor)
 I've been thinking for a while that it would be nice to be able to see what syntax group a string under the cursor uses (something akin to emacs's ~decribe-face~).[[https://github.com/inkarkat/SyntaxAttr.vim][This plugin]] does this.
-#+begin_src org
+#+begin_src vim
 Plug 'inkarkat/SyntaxAttr.vim'
 #+end_src
 *** vim-dirdiff (compare directories)
-#+begin_src org
+#+begin_src vim
 Plug 'will133/vim-dirdiff' 
 #+end_src
 ** Initialize the plugin system
-#+begin_src org
+#+begin_src vim
 " Initialize plugin system
 call plug#end()
 endif
@@ -254,7 +255,7 @@ endif
 Here are set the plugin-specific settings.
 ** SkyBison keymaps
 The bindings for invoking SkyBison: general, for buffers, for help and for file finding.
-#+begin_src org
+#+begin_src vim
 " SkyBison keymaps
 " general
 nnoremap <silent> <leader>s :<c-u>call SkyBison("")<cr>
@@ -267,34 +268,34 @@ nnoremap <silent> <leader>e :<c-u>call SkyBison("e ")<cr>
 #+end_src
 ** SkyBison substring matching
 This setting makes SkyBison match exact strings, no matter where in the word they are, thus bringing it closer to what I'm used to from ido and ivy.
-#+begin_src org
+#+begin_src vim
 " SkyBison substring matching
 let g:skybison_fuzz = 2
 #+end_src
 ** Shortcut for invoking MRU
-#+begin_src org
+#+begin_src vim
 " MRU shortcut
 nnoremap <silent> <leader>r :MRU<cr>
 #+end_src
 ** Duration of highlightedyank (in milliseconds)
-#+begin_src org
+#+begin_src vim
 " duration of highlightedyank highlight in milliseconds
 let g:highlightedyank_highlight_duration = 590
 #+end_src
 ** Color of marks for vim-signature
 Their default color is red, which doesn't look too good on my colorscheme. With the setting below, I set their color to green, so that they'll look better.
-#+begin_src org
+#+begin_src vim
 let g:SignatureMarkTextHL = "Title"
 #+end_src
 ** Vim-highlighturl settings
 *** Highlight color
 The default one is darker than I wish it to be.
-#+begin_src org
+#+begin_src vim
 let g:highlighturl_guifg ='#00ffff'
 #+end_src
 *** Enable the plugin only on text files
 The other filetypes where urls are usually encountered (e.g. markdown) manage the url highlighting by themselves, so no need to enable it there (code adapted from the example in the doc file). I'm enabling this conditionally so that it won't show an error if the plugin isn't present.
-#+begin_src org
+#+begin_src vim
 if exists('g:loaded_highlighturl')
 let g:highlighturl_enable = 0
 	augroup highlighturl-filetype
@@ -305,7 +306,7 @@ endif
 #+end_src
 ** Bindings of ShowMotion plugin
 Make them conditional, so that they will work in the default manner if the plugin isn't present.
-#+begin_src org
+#+begin_src vim
 autocmd myautocmds VimEnter * call s:showmotion_bindings()
 function! s:showmotion_bindings() abort
 if exists('g:loaded_showmotion')
@@ -332,7 +333,7 @@ endfunction
 In regards to the default colors used by modusline, I didn't want to use all of the defaults as they were, as, for example, the defined by modusline color of the terminal mode overrode StatusLineTerm. I initially couldn't override this however, so [[https://github.com/sunaku/vim-modusline/issues/1][the author of the plugin gave me an autocommand to use]], and this worked.\\
 At first I thought I could only use the colors defined by my colorscheme, and since it didn't define much stuff with a solid bg, my statusline didn't look as good as it could have. But then I found out about the existence of a number of custom highlight parameters reserved for the user, namely ~hl-User1..9~, via [[https://kadekillary.work/post/statusline-vim/][this blogpost]] , so I thought that I could use those to highlight my statusline any way I wanted. When I first tried to set the highlights just by themselves however, they were being cleared by the colorscheme, no matter if I set it before or after the vim-modusline setting. I looked the problem up, and [[https://vi.stackexchange.com/a/3356][found out]] that I have to put these highlights in an autocmd to be executed with the colorscheme if I want to prevent them being cleared.\\
 Thus below I first set the User1..3 highlights with an autocmd and then override the modusline defaults for insert, visual and replace modes. The new colors for these ones are drawn from the lightline theme I created. I also had already replaced modusline's highlight of terminal mode with the one that is default in my colorscheme. I load this customization conditionally so that it won't show an error if the plugin is absent.
-#+begin_src org
+#+begin_src vim
 autocmd myautocmds ColorScheme *
         \ hi User1 guifg=#000000 guibg=#7fff00 |
         \ hi User2 guifg=#000000 guibg=#ffd700 |
@@ -354,34 +355,34 @@ endfunction
 #+end_src
 ** vim-convert-color-to keybinding
 When I want to convert multiple lines from one color format to another (e.g hsl to hex) with this plugin, a macro is the most convenient method. However writing the command on the command mode or scrolling up its history can be error-prone, as one might accidentally unleash a different command instead if they mistype or scroll further in the history than they intended (when testing the plugin for example, I accidentally unleashed a macro that attempted to write a new file instead!). Thus here I create a keybinding that calls the function, bound to ~<Leader>c~. As the ~:ConvertColorTo~ command requires an argument, this keybinding will be for converting to hex, as this is by far my most common usecase.
-#+begin_src org
+#+begin_src vim
 nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
 #+end_src
 ** lightline-gitdiff indicators
 The default indicators are ~A:~ for added, ~D:~ for removed, and ~M:~ for modified. I prefer something more minimalist however.
-#+begin_src org
+#+begin_src vim
 let g:lightline#gitdiff#indicator_added = '+'
 let g:lightline#gitdiff#indicator_deleted = '-'
 let g:lightline#gitdiff#indicator_modified = '≠'
 #+end_src
 ** SyntaxAttr.vim keybinding
-#+begin_src org
+#+begin_src vim
 nnoremap <silent> <leader>a :<c-u>call SyntaxAttr#SyntaxAttr()<cr>
 #+end_src
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).
-#+begin_src org
+#+begin_src vim
 if has('termguicolors')
 set termguicolors
 endif
 #+end_src
 Change color of PreProc for the builtin slate theme: The builtin theme slate is the one I'll use when blue-mood isn't available, but I don't like the default color of PreProc, so I link it to Identifier instead.
-#+begin_src org
+#+begin_src vim
 autocmd myautocmds ColorScheme slate
         \ hi! link PreProc Identifier
 #+end_src
 Where I enable [[https://github.com/lmintmate/blue-mood-vim][my home-made colorscheme, blue-mood]]. I check first if the gui is running or the ~termguicolors~ feature exists. If any one of those two things is true, then I set my colorscheme to blue-mood, using a ~try/catch~ block with the builtin colorscheme slate as fallback so that it won't error out in case blue-mood isn't present (which might happen since I install it manually). If none of these is true (e.g. if I happen to use terminal vim with a version below 7.4.1799 - where iirc the ~termguicolors~ option was first added) then the builtin colorscheme slate is used.
-#+begin_src org
+#+begin_src vim
 if has('gui_running') || has('termguicolors')
 try
     colorscheme blue-mood
@@ -393,12 +394,12 @@ colorscheme slate
 endif
 #+end_src
 This disables the annoying red on things like underscores in markdown mode (from [[https://github.com/tpope/vim-markdown/issues/79][Make highlighting of markdownError optional · Issue #79 · tpope/vim-markdown]])
-#+begin_src org
+#+begin_src vim
 autocmd myautocmds FileType markdown hi link markdownError NONE
 #+end_src
 * Settings for Gvim
 Font for Gvim: My preferred font is DejaVu Sans Mono, but that might not be installed on some Windows systems, so I'm using Consolas as a fallback.
-#+begin_src org
+#+begin_src vim
 if has("win32")
     set guifont=DejaVu_Sans_Mono:h14,Consolas:h14
 else
@@ -406,23 +407,23 @@ else
 endif
 #+end_src
 Linespace - increases space between lines - fixes underscore not showing up in Gvim.
-#+begin_src org
+#+begin_src vim
 set linespace=2
 #+end_src
 Disable toolbar in Gvim
-#+begin_src org
+#+begin_src vim
 set guioptions-=T       " disable toolbar in Gvim
 #+end_src
 Disable gui tabline in Gvim - with this it will show the same one it uses for terminal vim.
-#+begin_src org
+#+begin_src vim
 set guioptions-=e " Don't use gui tabline
 #+end_src
 Disable gui dialogs in Gvim for simple choices
-#+begin_src org
+#+begin_src vim
 set guioptions+=c       " disable gui dialogs in Gvim for simple choices
 #+end_src
 Set shortcuts for hiding menubar and scrollbar - adapted from [[http://vim.wikia.com/wiki/Hide_toolbar_or_menus_to_see_more_text][Hide toolbar or menus to see more text | Vim Tips Wiki]].
-#+begin_src org
+#+begin_src vim
 " hide menubar
 nnoremap <silent> <F9> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 " hide scrollbar
@@ -430,115 +431,115 @@ nnoremap <silent> <F10> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>e
 #+end_src
 * Various settings
 Wildmenu: visual autocomplete for command menu
-#+begin_src org
+#+begin_src vim
 set wildmenu            " visual autocomplete for command menu
 #+end_src
 Wildmode: This determines how wildmenu will act. The default behavior (~wildmode=full~) completed the full name of the first option immediately, which was annoying because, more often than not, I do not wish to use that option. The setting below completes until the longest common string while showing the wildmenu, and tabbing a second time completes the full name of the remaining options.
-#+begin_src org
+#+begin_src vim
 set wildmode=longest:full,full
 #+end_src
 Display incomplete commands
-#+begin_src org
+#+begin_src vim
 set showcmd             " display incomplete commands
 #+end_src
 Prevents the initial message from showing up
-#+begin_src org
+#+begin_src vim
 set shortmess+=I        " prevents the initial message from showing up
 #+end_src
 linebreak - prevents wrap mode from cutting words in the middle
-#+begin_src org
+#+begin_src vim
 set linebreak           " prevents wrap mode from cutting words in the middle
 #+end_src
 Set relative line numbers to ease navigation by lines - toggle with :set rnu!
-#+begin_src org
+#+begin_src vim
 set relativenumber      " set relative line numbers
 #+end_src
 scrolloff - set number of context lines to show above/below the cursor
-#+begin_src org
+#+begin_src vim
 set scrolloff=4         " set number of context lines to show above/below cursor
 #+end_src
 Ask for confirmation on operations such as quit without saving
-#+begin_src org
+#+begin_src vim
 set confirm             " ask for confirmation on operations
 #+end_src
 Set vim to use the system clipboard
-#+begin_src org
+#+begin_src vim
 set clipboard=unnamed,unnamedplus " set vim to use the system clipboard
 #+end_src
 Switch to another buffer without asking for confirmation to save any unchanged changes.
-#+begin_src org
+#+begin_src vim
 set hidden " switch to another buffer without asking for confirmation to save any unsaved changes
 #+end_src
 Disable beeping
-#+begin_src org
+#+begin_src vim
 set belloff=all " disable beeping
 #+end_src
 Display partial lines at the bottom of the screen
-#+begin_src org
+#+begin_src vim
 set display=lastline " display partial lines at the bottom of the screen
 #+end_src
 Set encoding as utf-8, because this might be the default on Linux, but that isn't the case on Windows (there the encoding is some ~cp1253~ nonsense - looking at Wikipedia it seems this is another name for an encoding called [[https://en.wikipedia.org/wiki/Windows-1253][Windows-1253]], an obsolete encoding for Greek).
-#+begin_src org
+#+begin_src vim
 set encoding=utf-8
 #+end_src
 Set backspace, because it might already be defined like that on Linux, but not on Windows.
-#+begin_src org
+#+begin_src vim
 set backspace=indent,eol,start
 #+end_src
 Enable mouse in the terminal as well. The mouse is already enabled on the gui by default, but not on the terminal. This fixes that.
-#+begin_src org
+#+begin_src vim
 set mouse=a
 #+end_src
 Prevent mouse from showing popup menu on right click. Also enables shift + left mouse button to search word under cursor (basically the reason I changed this setting). This seems to be the default on Linux, but this isn't the case on Windows.
-#+begin_src org
+#+begin_src vim
 set mousemodel=extend
 #+end_src
 ** Keybindings
 Keymap to have enter add a new line without entering insert mode - good for spacing out text. I used to have it as ~nnoremap <CR>o<Esc>k~, but it was a bit jarring for some reason. I realised a while after that Enter in the conventional text editors does not in fact add a line below, as I thought, but rather a line /above/ from where the cursor is, so I corrected my keybinding accordingly.
-#+begin_src org
+#+begin_src vim
 nnoremap <CR> O<Esc>j
 #+end_src
 Delete letters without putting them in the clipboard
-#+begin_src org
+#+begin_src vim
 nnoremap x "_x
 nnoremap X "_X
 #+end_src
 Visual mode remapping so that the stuff I replace by pasting isn't copied to the clipboard (from [[https://stackoverflow.com/a/10723838]])
-#+begin_src org
+#+begin_src vim
 " don't copy to the clipboard the stuff I replace by pasting
 vnoremap p "_dp
 vnoremap P "_dP
 #+end_src
 I sometimes want to be able to move by visual lines, and rebinding j and k to gj and gk broke prefixing j and k with numbers, so I bound these commands to the arrows which aren't used with a prefix (if at all) anyways.
-#+begin_src org
+#+begin_src vim
 nnoremap <Up> gk
 nnoremap <Down> gj
 #+end_src
 Keymap to save with ctrl-s. I decided to add this because sometimes I want to use a one-handed shortcut, since I might be holding something else (e.g. a book) with my other hand. However, I read online that this same shortcut is used as a stop signal by terminals, thus this keymap will only be active in Gvim (where I do my editing 99% of the time anyways). ~:up[date]~ is a command that writes the buffer only if it has been modified, which thus leaves the modification time unchanged if that is not the case.
-#+begin_src org
+#+begin_src vim
 if has('gui_running')
 nnoremap <silent> <c-s> :update<CR>
 endif
 #+end_src
 Unmap ~<Ctrl-X>~ in visual mode only on Windows: I found out that there is a function in vim to increment numbers with ~<Ctrl-A>~ and decrement numbers with ~<Ctrl-X>~ on normal and visual modes (see ~:h CTRL-A~, ~:h v_CTRL_A~, ~:h CTRL_X~, ~:h v_CTRL_X~, and also [[https://medium.com/usevim/visual-mode-increment-cce60c8743dc][here]] and [[https://www.networkworld.com/article/2968352/tricks-to-play-with-vim.html][here]]).There is also a function that can create incrementing and decrementing sequences (see ~:h v_g_CTRL_A~ and ~:h v_g_CTRL_X~) However on Windows, ~<Ctrl-X>~ on visual mode cuts the text instead. ~:h v_CTRL_X~ informs that using ~silent! vunmap <C-X>~ disables this behavior and restores the decrementing behavior in its place.
-#+begin_src org
+#+begin_src vim
 if has("win32")
 silent! vunmap <C-X>
 endif
 #+end_src
 Not a keybinding. but related: Add single alphanumeric characters to the list of stuff that can be incremented or decremented with ~Ctrl-A~ and ~Ctrl-X~. This is useful for things like lists with a letter index e.g. a), b), etc.
-#+begin_src org
+#+begin_src vim
 set nrformats+=alpha
 #+end_src	
 ** Netrw
 Add relative line numbers to netrw: The below setting will help me navigate netrw buffers more easily, by showing relative line numbers.
-#+begin_src org
+#+begin_src vim
 let g:netrw_bufsettings = 'noma nomod rnu nobl nowrap ro nobl'
 #+end_src
 A note in regards to netrw: My mileage with it varies. On my Linux machine it exhibits no bugs whatsoever, so I'm fine with using it whenever I need to navigate the filesystem there. On my Windows machine however it exhibits enough bugs to annoy me and make me look for an alternative file browser. In this case (that is whenever netrw acts all buggy), [[https://github.com/cocopon/vaffle.vim][Vaffle]] is the solution that works the best for me. In short, I occasionally use the Vaffle plugin but only on those cases where netrw exhibits enough bugs to make me not want to use it.
 ** Autocmd for help buffers
 This autocmd (idea from [[https://github.com/junegunn/dotfiles/blob/5485496191a5413b9bf073ea0660ed97ccefc53d/vimrc#L1765][a snippet from junegunn's dotfiles]], found via [[https://github.com/arzg/vim-tabhelp][this plugin]]) has help buffers cover the whole viewpane and enables using just q to exit from them. The original autocmd used ~BufEnter~ instead of ~BufWinEnter~ but that caused instances of SkyBison called from help buffers to error out with ~E16~, saying ~Invalid range: 2wincmd w~. Looking at SkyBison's source code, I saw that [[https://github.com/paradigm/SkyBison/blob/1bc37a87a2517c57d9421e06a6dbf974b73d9238/plugin/skybison.vim#L176][SkyBison briefly revisited the open buffer using a wincmd]], and this apparently counted as a ~BufEnter~ event which caused 2 wincmd commands to be executed. I thus changed the event to ~BufWinEnter~ which still enables this autocmd but also doesn't error out SkyBison.
-#+begin_src org
+#+begin_src vim
 function! s:helptab()
   if &buftype == 'help'
     silent! :only
@@ -549,7 +550,7 @@ autocmd myautocmds BufWinEnter *.txt call s:helptab()
 #+end_src
 ** DiffOrig command
 Found from the ~defaults.vim~ file. This provides a command that uses vimdiff to find the differences between how a file was originally loaded and its current version after changes were made - useful to see what changes were made before saving a file.
-#+begin_src org
+#+begin_src vim
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
@@ -557,26 +558,26 @@ endif
 #+end_src
 * Search settings
 Display search matches as characters are entered
-#+begin_src org
+#+begin_src vim
 set incsearch " display search matches as characters are entered
 #+end_src
 Highlight matches
-#+begin_src org
+#+begin_src vim
 set hlsearch " highlight matches
 #+end_src
 ignorecase - Case insensitive search e.g. if I want to find Foo as well when searching for /foo
-#+begin_src org
+#+begin_src vim
 set ignorecase          " case-insensitive search
 #+end_src
 smartcase - override the previous setting when the search pattern uses capitals e.g. /Foo finds only Foo.
-#+begin_src org
+#+begin_src vim
 set smartcase " override the previous when search pattern uses capitals e.g. /Foo finds only Foo
 #+end_src
 * Custom statusline
 I found that vim has a statusline, and wanted to have it be similar to emacs's modeline. I was tempted to use [[https://github.com/itchyny/lightline.vim][lightline]], but then noticed that, because it needs separate theming, would look out of place with my home-made theme (I hadn't yet made a lightline theme at the time, and even now that I have I don't feel like rewriting my entire statusline in order to make it slightly fancier). So I made a custom statusline instead (here is a good place to get started with the subject: [[https://shapeshed.com/vim-statuslines/]]). This statusline shows on the left side the file encoding, the file format, the file name, whether the file is modified, whether this is a help buffer, or a read-only buffer.\\
 On the right side it shows the keymap, the filetype, the current line, and the percentage into file, and the current time. Note that the current time is updated only on the active buffer.
 In addition, also on the left side of the statusline, I added the function provided by [[https://github.com/itchyny/vim-gitbranch][vim-gitbranch]] ~gitbranch#name~, in order to be able to see whether the file is in version control or not. However, I don't want this to error out while on Windows, where I don't have git installed, so I tell it to load only if the parameter ~g:loaded_gitbranch~, which is defined in vim-gitbranch, is present, as I'm not going to install a plugin about git on a gitless environment (code for said conditional loading adapted from [[https://stackoverflow.com/a/5986830][here]]). I also added the function provided by [[https://github.com/niklaas/lightline-gitdiff/][lightline-gitdiff]] ~lightline#gitdiff#get~, in order to be able to see what changes have been made to a version-controlled file since the last commit. Similarly to vim-gitbranch, I also have it load conditionally, this time depending on whether the variable ~g:lightline#gitdiff#cache~ is present.
-#+begin_src org
+#+begin_src vim
 set laststatus=2 " always show status line
 " beginning of statusline
 set statusline=
@@ -599,20 +600,20 @@ set statusline+=\
 #+end_src
 * Nationality and keymap settings
 Enable greek input - switch inputs with ctrl+6
-#+begin_src org
+#+begin_src vim
 set keymap=greek_utf-8  " enables greek input - switch inputs with ctrl+6
 #+end_src
 iminsert - I don't want greek as default though in insert mode, so this setting makes sure that's the case.
-#+begin_src org
+#+begin_src vim
 set iminsert=0 " I dont want greek as default though in insert mode
 #+end_src
 imsearch - with this, when searching it inherits the keymap currently used in insert mode.
-#+begin_src org
+#+begin_src vim
 set imsearch=-1 " with this when searching it inherits the keymap currently used in insert mode
 #+end_src
 ** Greek letters mapping.
 Map Greek letters to the respective on the keyboard Latin ones - for Normal, Visual, Select and Operator pending modes - in case I've forgotten to switch my system keyboard language from Greek (idea from [[https://www.void.gr/kargig/dot/vimrc]]). Another unforeseen advantage of these mappings for me is that I can now use the commands that jump to letters (f,F,t,T) in order to jump to Greek letters without having to change my system keyboard layout midway through.
-#+begin_src org
+#+begin_src vim
 map α a
 map Α A
 map β b
