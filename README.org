@@ -40,7 +40,6 @@
     - [[#orgvim-syntax-highlighting-and-folding-for-org-mode-files][org.vim (syntax highlighting and folding for org-mode files)]]
     - [[#vim-freekeys-shows-free-keys-available-for-mappings][vim-freekeys (shows free keys available for mappings)]]
     - [[#syntaxattrvim-detection-of-syntax-group-under-cursor][SyntaxAttr.vim (detection of syntax group under cursor)]]
-    - [[#vim-dirdiff-compare-directories][vim-dirdiff (compare directories)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -240,10 +239,6 @@ Plug 'lacygoill/vim-freekeys'
 I've been thinking for a while that it would be nice to be able to see what syntax group a string under the cursor uses (something akin to emacs's ~decribe-face~).[[https://github.com/inkarkat/SyntaxAttr.vim][This plugin]] does this.
 #+begin_src vim
 Plug 'inkarkat/SyntaxAttr.vim'
-#+end_src
-*** vim-dirdiff (compare directories)
-#+begin_src vim
-Plug 'will133/vim-dirdiff' 
 #+end_src
 ** Initialize the plugin system
 #+begin_src vim
