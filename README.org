@@ -39,7 +39,7 @@
     - [[#lightline-gitdiff-shows-number-of-changes-from-last-commit-on-statusline][lightline-gitdiff (shows number of changes from last commit on statusline)]]
     - [[#orgvim-syntax-highlighting-and-folding-for-org-mode-files][org.vim (syntax highlighting and folding for org-mode files)]]
     - [[#vim-freekeys-shows-free-keys-available-for-mappings][vim-freekeys (shows free keys available for mappings)]]
-    - [[#syntaxattrvim-detection-of-syntax-group-under-cursor][SyntaxAttr.vim (detection of syntax group under cursor)]]
+    - [[#inspecthivim-detection-of-syntax-group-under-cursor][inspecthi.vim (detection of syntax group under cursor)]]
   - [[#initialize-the-plugin-system][Initialize the plugin system]]
 - [[#plugin-settings][Plugin settings]]
   - [[#skybison-keymaps][SkyBison keymaps]]
@@ -54,7 +54,6 @@
   - [[#vim-modusline-color-settings][vim-modusline color settings]]
   - [[#vim-convert-color-to-keybinding][vim-convert-color-to keybinding]]
   - [[#lightline-gitdiff-indicators][lightline-gitdiff indicators]]
-  - [[#syntaxattrvim-keybinding][SyntaxAttr.vim keybinding]]
 - [[#colorscheme-settings][Colorscheme settings]]
 - [[#settings-for-gvim][Settings for Gvim]]
 - [[#various-settings][Various settings]]
@@ -235,10 +234,10 @@ I wanted a vim equivalent of the emacs package [[https://github.com/Fuco1/free-k
 #+begin_src vim
 Plug 'lacygoill/vim-freekeys'
 #+end_src
-*** SyntaxAttr.vim (detection of syntax group under cursor)
-I've been thinking for a while that it would be nice to be able to see what syntax group a string under the cursor uses (something akin to emacs's ~decribe-face~).[[https://github.com/inkarkat/SyntaxAttr.vim][This plugin]] does this.
+*** inspecthi.vim (detection of syntax group under cursor)
+I've been thinking for a while that it would be nice to be able to see what syntax group a string under the cursor uses (something akin to emacs's ~decribe-face~).[[https://github.com/cocopon/inspecthi.vim][This plugin]] does this.
 #+begin_src vim
-Plug 'inkarkat/SyntaxAttr.vim'
+Plug 'cocopon/inspecthi.vim'
 #+end_src
 ** Initialize the plugin system
 #+begin_src vim
@@ -359,10 +358,6 @@ The default indicators are ~A:~ for added, ~D:~ for removed, and ~M:~ for modifi
 let g:lightline#gitdiff#indicator_added = '+'
 let g:lightline#gitdiff#indicator_deleted = '-'
 let g:lightline#gitdiff#indicator_modified = '≠'
-#+end_src
-** SyntaxAttr.vim keybinding
-#+begin_src vim
-nnoremap <silent> <leader>a :<c-u>call SyntaxAttr#SyntaxAttr()<cr>
 #+end_src
 * Colorscheme settings
 Set termguicolors: Makes terminal vim compatible with gui themes.(Check if the option exists first though, in case an error is throw if that's not the case).

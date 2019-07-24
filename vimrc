@@ -75,7 +75,7 @@ Plug 'axvr/org.vim'
 
 Plug 'lacygoill/vim-freekeys'
 
-Plug 'inkarkat/SyntaxAttr.vim'
+Plug 'cocopon/inspecthi.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -158,8 +158,6 @@ nnoremap <silent> <leader>c :<c-u>call ConvertColorTo("hex ")<cr>
 let g:lightline#gitdiff#indicator_added = '+'
 let g:lightline#gitdiff#indicator_deleted = '-'
 let g:lightline#gitdiff#indicator_modified = '≠'
-
-nnoremap <silent> <leader>a :<c-u>call SyntaxAttr#SyntaxAttr()<cr>
 
 if has('termguicolors')
 set termguicolors
