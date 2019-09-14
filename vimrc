@@ -77,6 +77,8 @@ Plug 'lacygoill/vim-freekeys'
 
 Plug 'cocopon/inspecthi.vim'
 
+Plug 'zplugin/zplugin-vim-syntax'
+
 " Initialize plugin system
 call plug#end()
 endif
