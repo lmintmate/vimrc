@@ -37,9 +37,6 @@ Plug 'kana/vim-textobj-entire'
 " simple plugin to view list of recently opened files.
 Plug 'lmintmate/MRU'
 
-" shows number of search results
-Plug 'google/vim-searchindex'
-
 " disables search highlighting when you are done searching and re-enables it when you search again
 Plug 'romainl/vim-cool'
 
@@ -206,6 +203,8 @@ set wildmode=longest:full,full
 set showcmd             " display incomplete commands
 
 set shortmess+=I        " prevents the initial message from showing up
+
+set shortmess-=S
 
 set linebreak           " prevents wrap mode from cutting words in the middle
 

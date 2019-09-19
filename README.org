@@ -22,7 +22,6 @@
   - [[#declare-the-list-of-plugins][Declare the list of plugins]]
     - [[#vim-textobj-entire][vim-textobj-entire]]
     - [[#mru-viewing-recent-files][MRU (Viewing recent files)]]
-    - [[#vim-searchindex-show-number-of-search-results][vim-searchindex (Show number of search results)]]
     - [[#vim-cool-disable-search-highlighting][vim-cool (disable search highlighting)]]
     - [[#skybison-autocomplete-system-for-the-cmdline][SkyBison (Autocomplete system for the cmdline)]]
     - [[#vim-highlightedyank-makes-yanked-region-apparent][vim-highlightedyank (Makes yanked region apparent)]]
@@ -145,12 +144,6 @@ I wanted to be able to view the files I had recently opened easily, and Ctrl-P d
 #+begin_src vim
 " simple plugin to view list of recently opened files.
 Plug 'lmintmate/MRU'
-#+end_src
-*** vim-searchindex (Show number of search results)
-By default vim doesn't show the number of search results. [[https://github.com/google/vim-searchindex][This plugin]] fixes that.
-#+begin_src vim
-" shows number of search results
-Plug 'google/vim-searchindex'
 #+end_src
 *** vim-cool (disable search highlighting)
 Another annoying default behavior of Vim is that it keeps the highlighting of the search results even when I finished with the search. [[https://github.com/romainl/vim-cool][This plugin]] disables the search highlighting when any button is pressed.
@@ -441,6 +434,10 @@ set showcmd             " display incomplete commands
 Prevents the initial message from showing up
 #+begin_src vim
 set shortmess+=I        " prevents the initial message from showing up
+#+end_src
+Show the number of current and total search results in the commandline (see [[https://github.com/vim/vim/commit/9dfa3139198b38b28673e251a3756430065914e9][here]]). This option appears from vim version 8.1.1270 onward.
+#+begin_src vim
+set shortmess-=S
 #+end_src
 linebreak - prevents wrap mode from cutting words in the middle
 #+begin_src vim
