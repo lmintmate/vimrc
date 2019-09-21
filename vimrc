@@ -204,8 +204,6 @@ set showcmd             " display incomplete commands
 
 set shortmess+=I        " prevents the initial message from showing up
 
-set shortmess-=S
-
 set linebreak           " prevents wrap mode from cutting words in the middle
 
 set relativenumber      " set relative line numbers
@@ -266,6 +264,8 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+set shortmess-=S
 
 set incsearch " display search matches as characters are entered
 

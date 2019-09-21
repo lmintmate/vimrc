@@ -435,10 +435,6 @@ Prevents the initial message from showing up
 #+begin_src vim
 set shortmess+=I        " prevents the initial message from showing up
 #+end_src
-Show the number of current and total search results in the commandline (see [[https://github.com/vim/vim/commit/9dfa3139198b38b28673e251a3756430065914e9][here]]). This option appears from vim version 8.1.1270 onward.
-#+begin_src vim
-set shortmess-=S
-#+end_src
 linebreak - prevents wrap mode from cutting words in the middle
 #+begin_src vim
 set linebreak           " prevents wrap mode from cutting words in the middle
@@ -550,6 +546,10 @@ if !exists(":DiffOrig")
 endif
 #+end_src
 * Search settings
+Show the number of current and total search results in the commandline (see [[https://github.com/vim/vim/commit/9dfa3139198b38b28673e251a3756430065914e9][here]]). This option appears from vim version 8.1.1270 onward.
+#+begin_src vim
+set shortmess-=S
+#+end_src
 Display search matches as characters are entered
 #+begin_src vim
 set incsearch " display search matches as characters are entered
